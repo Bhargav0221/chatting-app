@@ -9,7 +9,7 @@ const useSendMessage = () => {
     try {
         const token=localStorage.getItem("token");
       const res = await axios.post(
-        `http://localhost:5000/Message/send/${selectedconversation._id}`,
+        `${process.env.VITE_API_URL}/Message/send/${selectedconversation._id}`,
         
             {
                message: nemessage

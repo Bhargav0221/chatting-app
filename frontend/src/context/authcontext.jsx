@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
         navigate("/login");
         return ;m
        }
-          const response= await(axios.get("http://localhost:5000/user/protected",{
+          const response= await(axios.get(`${process.env.VITE_API_URL}user/protected`,{
             headers: {
               Authorization: `Bearer ${token}`, // Correctly pass token in the Authorization header
             },

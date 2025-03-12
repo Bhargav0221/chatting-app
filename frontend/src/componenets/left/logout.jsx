@@ -3,13 +3,13 @@ import React from 'react'
 import { MdOutlineLogout } from "react-icons/md";
 import { usecontext } from '../../context/socketcontext';
 import { useNavigate } from 'react-router-dom';
-import {toast} from "react-toastify"
+import {toast} from "react-toastify";
 function logout() {
   const {socket}=usecontext()
   const navigate=useNavigate();
   const logout=async ()=>{
     try{
-    const response= await axios.post("http://localhost:5000/user/logout")
+    const response= await axios.post(`${process.env.VITE_API_URL}/user/logout`)
     if(response.data.message==="user logged out succesfully")
     {
         localStorage.removeItem("messenger");

@@ -10,7 +10,7 @@ function usegetalluser() {
                 setloading(true);
                 try{
                 const token = localStorage.getItem("token");
-               const response= await axios.get("http://localhost:5000/user/getuser", {
+               const response= await axios.get(`${process.env.VITE_API_URL}/user/getuser`, {
                     credentials: "include",
                     headers: {
                         Authorization: `Bearer ${token}`,

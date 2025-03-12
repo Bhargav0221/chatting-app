@@ -26,7 +26,7 @@ function Message() {
     if (!msgId) return;
 
     try {
-      const response = await axios.post(`http://localhost:5000/Message/delete/${msgId}`);
+      const response = await axios.post(`${process.env.VITE_API_URL}/${msgId}`);
 
       if (response.status === 200) {
         // ✅ Show toast
