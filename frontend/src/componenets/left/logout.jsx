@@ -9,7 +9,7 @@ function logout() {
   const navigate=useNavigate();
   const logout=async ()=>{
     try{
-    const response= await axios.post(`${process.env.VITE_API_URL}/user/logout`)
+    const response= await axios.post(`${import.meta.env.VITE_API_URL}/user/logout`)
     if(response.data.message==="user logged out succesfully")
     {
         localStorage.removeItem("messenger");
