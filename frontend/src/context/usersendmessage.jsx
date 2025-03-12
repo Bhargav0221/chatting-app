@@ -21,7 +21,8 @@ const useSendMessage = () => {
         }
          
       );
-      setmessage([...(message || []), res.data.newmessage]);
+      setmessage(prev => [...(Array.isArray(prev) ? prev : []), res.data.newmessage]);
+
 
       setLoading(false);
     } catch (error) {
