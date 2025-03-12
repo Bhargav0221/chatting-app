@@ -12,7 +12,14 @@ const URI=process.env.MONGODB_URI;
 
 
 app.use(express.json());    
-app.use(cors())
+app.use(cors(
+    {
+        cors: {
+            origin: "*",
+            methods: ["GET", "POST"]
+        }
+    }
+))
 app.use(cookieParser());
 
 try{
