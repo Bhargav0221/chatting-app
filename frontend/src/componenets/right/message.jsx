@@ -26,15 +26,14 @@ function Message() {
     if (!msgId) return;
 
     try {
-      const response = await axios.post(`${process.env.VITE_API_URL}/${msgId}`);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/${msgId}`);
 
       if (response.status === 200) {
         // ✅ Show toast
         toast.success("Message deleted successfully");
 
         // ✅ Update sender's message list immediately
-        const updatedMessages = message.filter((msg) => msg._id !== msgId);
-        setmessage(updatedMessages);
+     
 
         // ✅ Notify receiver via socket
         socket.emit("deltemessage", { msgId, conversationId: selectedconversation._id });
