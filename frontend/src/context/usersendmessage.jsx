@@ -21,7 +21,8 @@ const useSendMessage = () => {
         }
          
       );
-      setmessage([...message, res.data.newmessage]);
+      setmessage([...(message || []), res.data.newmessage]);
+
       setLoading(false);
     } catch (error) {
       console.log("Error in send messages", error);
