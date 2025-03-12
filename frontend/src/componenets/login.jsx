@@ -3,6 +3,7 @@ import { useState } from 'react'
 import axios from "axios";
 import { useauth } from '../context/authcontext';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 function login() {
     const[user,setuser]=useauth();
     const [formdata,setformdata]=useState({
@@ -18,16 +19,17 @@ function login() {
         email:formdata.email,password:formdata.password
        })
        .then((response)=>{
-        console.log("login response",response.data);
+       
         
        localStorage.setItem("messenger",JSON.stringify(response.data.user));
        localStorage.setItem("token",JSON.stringify(response.data.token));
        setuser(response.data.user);
+       toast.success("Login Successful")
       
              })
        .catch((error)=>{
         console.log("error in login"+error);
-       alert("error occured ")
+      toast.error("error occured ")
        })
     }
     return (

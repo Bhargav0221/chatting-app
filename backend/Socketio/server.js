@@ -1,6 +1,7 @@
     import { Server } from "socket.io";
     import * as http from "http";
     import express from "express";
+import { log } from "console";
   
     const app = express();
     const server = http.createServer(app);
@@ -25,7 +26,14 @@
         }
         console.log(users);
         io.emit("getonline",Object.keys(users))
-     
+      socket.on("deltemessage",({msgId,conversationId})=>{
+      console.log("conversation",conversationId);
+       const socketid=getReceiverSocketId(conversationId)
+      console.log("socket is",socketid);
+      
+        io.to(socketid).emit("delete-message",msgId);
+
+      })
         socket.on("disconnect", () => {
             console.log("Client disconnected:", socket.id);
             delete users[userId];

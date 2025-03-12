@@ -25,6 +25,7 @@ function Usegetmessage() {
             console.log("✅ API Response:", response.data);
             
             setmessage(response.data);
+            
             setloading(false)
         }
         catch(error)

@@ -10,9 +10,12 @@ const usegetsocketmessage = () => {
         socket.on("newmessage",(newmessage)=>{
             setmessage([...message,newmessage])
         })
+ 
         return () => {
             socket.off("newmessage");
+           
           };
+         
       
  },[socket,message,setmessage])
 }

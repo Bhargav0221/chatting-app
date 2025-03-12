@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useauth } from '../context/authcontext';
 import { Link } from 'react-router-dom'; // Import Link
-
+import { toast } from 'react-toastify';
 function Signup() {
     const [user, setuser] = useauth();
     const [formdata, setformdata] = useState({
@@ -19,7 +19,7 @@ function Signup() {
     const handlesubmit = async (e) => {
         e.preventDefault();
         if (formdata.password !== formdata.confirmpassword) {
-            alert("Passwords do not match");
+            toast.error("Passwords do not match");
             return;
         }
         console.log("Form submitted", formdata);
@@ -33,7 +33,7 @@ function Signup() {
 
             console.log(response.data);
             if (response.data) {
-                alert("Signup successful");
+                toast.success("Signup successful");
             }
             localStorage.setItem("messenger", JSON.stringify(response.data.user));
             localStorage.setItem("token",JSON.stringify(response.data.token));
@@ -42,7 +42,7 @@ function Signup() {
             console.log("User is made in signup", user);
         } catch (error) {
             console.log("Error in signup", error);
-            alert("An error occurred");
+            toast.error("An error occurred");
         }
     };
 
