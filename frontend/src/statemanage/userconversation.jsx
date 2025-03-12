@@ -4,7 +4,7 @@
     selectedconversation:null,
     setselectedconversation: (selectedconversation) => set({selectedconversation}),
     message:[],
-  setmessage: ( message) => set({  message }),
+    setmessage: (message = []) => set({ message: message || [] }) 
   
   }));
   export default useConversation
