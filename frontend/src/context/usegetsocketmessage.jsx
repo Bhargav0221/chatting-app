@@ -8,10 +8,7 @@ const usegetsocketmessage = () => {
  useEffect(()=>
     {
         socket.on("newmessage",(newmessage)=>{
-            setmessage((prevMessages) =>
-                Array.isArray(prevMessages) ? [...prevMessages, newmessage] : [newmessage]
-              );
-            });
+            setmessage([...message,newmessage])
         })
  
         return () => {
