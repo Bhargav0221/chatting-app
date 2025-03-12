@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
        if(!token)
        {
         navigate("/login");
-        return ;m
+        return ;
        }
           const response= await(axios.get(`${import.meta.env.VITE_API_URL}user/protected`,{
             headers: {
