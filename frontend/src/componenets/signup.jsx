@@ -24,7 +24,7 @@ function Signup() {
         }
         console.log("Form submitted", formdata);
         try {
-            const response = await axios.post(`${process.env.VITE_API_URL}/user/signup`, {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/signup`, {
                 email: formdata.email,
                 name: formdata.username,
                 password: formdata.password,

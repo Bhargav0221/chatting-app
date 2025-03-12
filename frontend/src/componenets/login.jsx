@@ -15,7 +15,7 @@ function login() {
     }
     const handlesubmit=(e)=>{
         e.preventDefault();
-       axios.post(`${process.env.VITE_API_URL}/user/login`,{
+       axios.post(`${import.meta.env.VITE_API_URL}/user/login`,{
         email:formdata.email,password:formdata.password
        })
        .then((response)=>{

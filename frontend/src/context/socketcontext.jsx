@@ -17,7 +17,7 @@ export const SocketProvider = ({ children }) => {
     useEffect(() => {
         if (user) {
 
-            const socket = io(`${process.env.VITE_API_URL}`, {
+            const socket = io(`${import.meta.env.VITE_API_URL}`, {
                 query: {
                     userId: user._id,
                 }

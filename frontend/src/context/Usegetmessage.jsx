@@ -17,7 +17,7 @@ function Usegetmessage() {
             {
             try{
                 const token=localStorage.getItem("token");
-            const response=await axios.get(`${process.env.VITE_API_URL}/Message/get/${selectedconversation._id}`,{
+            const response=await axios.get(`${import.meta.env.VITE_API_URL}/Message/get/${selectedconversation._id}`,{
                 headers: {
                     Authorization: `Bearer ${token}`, // 🔥 Add token here
                 },
