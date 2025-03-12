@@ -24,8 +24,8 @@ export const sendmessage = async (req, res) => {
         const recieversocketid=getReceiverSocketId(recieverId);
         if(recieversocketid)
         {
-            io.to(recieversocketid).emit("newmessage",newmessage);
-        }
+                io.to(recieversocketid).emit("newmessage",newmessage);
+            }
         if (!converstion) {
             converstion = await Conversation({
                 participants: [senderId, recieverId],
