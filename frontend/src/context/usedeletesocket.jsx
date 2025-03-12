@@ -3,7 +3,7 @@ import { usecontext } from './socketcontext'
 import useConversation from '../statemanage/userconversation'
 import Usegetmessage from './Usegetmessage';
 function usedeletesocket() {
-    const{message,setmessage} =Usegetmessage()
+    const{message,setmessage} =useConversation()
     const{socket}=usecontext();
     useEffect(()=>{
         if(!socket) return;
