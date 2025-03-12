@@ -23,7 +23,7 @@ function usedeletesocket() {
     socket.off("delete-message",inlineHandler);
    
   };
-    },[setmessage])
+    },[socket,setmessage])
   
 }
 

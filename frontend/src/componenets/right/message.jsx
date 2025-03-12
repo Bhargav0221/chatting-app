@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Message() {
-  const { message, loading, setmessage } = Usegetmessage(); 
+  const { message, loading, setmessage } = Usegetmessage();
   usegetsocketmessage();
   usedeletesocket();
   const [hoveredMessage, setHoveredMessage] = useState(null);
@@ -29,16 +29,11 @@ function Message() {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/Message/delete/${msgId}`);
 
       if (response.status === 200) {
-        // ✅ Show toast
-        toast.success("Message deleted successfully");
-
-        // ✅ Update sender's message list immediately
-     
-
-        // ✅ Notify receiver via socket
+        const updatedMessages = message.filter((msg) => msg._id !== msgId);
+        setmessage(updatedMessages);
         socket.emit("deltemessage", { msgId, conversationId: selectedconversation._id });
+        toast.success("Message deleted successfully");
       }
-
     } catch (error) {
       toast.error("Failed to delete message");
       console.log("Error deleting message:", error.response?.data || error.message);
@@ -72,7 +67,6 @@ function Message() {
         )}
       </div>
 
-      {/* ✅ Toast container for notifications */}
       <ToastContainer
         position="top-right"
         autoClose={2000}
