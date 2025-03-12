@@ -1,35 +1,38 @@
-import React, { useState } from "react";
-import  useConversation from"../statemanage/userconversation.jsx";
+import { useState } from "react";
+import useConversation from "../statemanage/userconversation.jsx";
 import axios from "axios";
+
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { message, setmessage, selectedconversation } = useConversation();
-  const sendmessage = async (nemessage) => {
+
+  const sendmessage = async (newMessage) => {
+    if (!selectedconversation?._id) return;
+
     setLoading(true);
     try {
-        const token=localStorage.getItem("token");
+      const token = localStorage.getItem("token");
+
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/Message/send/${selectedconversation._id}`,
-        
-            {
-               message: nemessage
-            },
-            {
-            headers:{
-                Authorization:  `Bearer ${token}`
-            },
+        { message: newMessage },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-         
       );
-      setmessage(prev => [...(Array.isArray(prev) ? prev : []), res.data.newmessage]);
 
+     
+      setmessage((prev) => [...(Array.isArray(prev) ? prev : []), res.data.newmessage]);
 
-      setLoading(false);
     } catch (error) {
-      console.log("Error in send messages", error);
+      console.error("Error in send messages:", error);
+    } finally {
       setLoading(false);
     }
   };
+
   return { loading, sendmessage };
 };
 
