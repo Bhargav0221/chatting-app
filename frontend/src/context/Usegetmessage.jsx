@@ -39,9 +39,8 @@ function Usegetmessage() {
     }
 }
 getmessage()
-    },[selectedconversation])
-  return {message,loading,setmessage
-  };
+    },[selectedconversation,setmessage])
+  return {message,loading };
 }
 
 export default Usegetmessage;
