@@ -12,7 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 function Message() {
-  const { message, loading, setmessage } = Usegetmessage();
+  const{setmessage}=useConversation();
+  const { message, loading } = Usegetmessage();
   usegetsocketmessage();
   usedeletesocket();
   const [hoveredMessage, setHoveredMessage] = useState(null);
