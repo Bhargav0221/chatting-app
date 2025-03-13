@@ -1,17 +1,15 @@
-import React from 'react'
-import Search from './search'
-import User from './user'
-function left() {
-  return (
-    <div className=' w-[30%]  bg-black text-white'>
-    
-      <Search></Search>
-      <hr />
-      <User>
+import React from 'react';
+import Search from './search';
+import User from './user';
 
-      </User>
+function Left() {
+  return (
+    <div className="w-full md:w-[35%] lg:w-[30%] h-screen overflow-y-auto bg-black text-white border-r border-gray-700">
+      <Search />
+      <hr className="border-gray-600" />
+      <User />
     </div>
-  )
+  );
 }
 
-export default left
+export default Left;
