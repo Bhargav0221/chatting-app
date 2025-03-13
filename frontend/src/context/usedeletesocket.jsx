@@ -9,7 +9,8 @@ function usedeletesocket() {
     useEffect(()=>{
         if(!socket) return;
         const inlineHandler = (msgId) => {
-       
+            console.log("messages at reciever",message);
+            
           const updatedMessages = message.filter((msg) => msg._id !== msgId);
           console.log("deleted message to reciever side",updatedMessages);
           
