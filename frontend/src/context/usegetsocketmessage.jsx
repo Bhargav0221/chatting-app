@@ -12,7 +12,7 @@ const usegetsocketmessage = () => {
                 setmessage([...message, newmessage]);
             }
             else {
-                setmessage(newmessage)
+                setmessage([newmessage])
             }
         };
 

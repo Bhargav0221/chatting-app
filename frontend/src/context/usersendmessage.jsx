@@ -27,7 +27,7 @@ const useSendMessage = () => {
         setmessage([...message, res.data.newmessage]);
       }
       else {
-        setmessage(res.data.newmessage)
+        setmessage([res.data.newmessage])
       }
       setLoading(false);
     } catch (error) {
