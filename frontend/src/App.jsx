@@ -19,7 +19,7 @@ function App() {
           path="/"
           element={
             user ? (
-              <div className="flex ">
+              <div className="flex flex-col md:flex-row h-screen w-full">
                 <Left />
                 <Right />
               </div>
