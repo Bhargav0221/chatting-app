@@ -27,8 +27,7 @@ function search() {
     <div className='px-6 py-3'>
       <form  onSubmit={handleSubmit}>
         <div className='flex space-x-3 h-[10vh]'>
-          <label className="input input-bordered flex items-center gap-2 w-[80%]">
-          </label>
+         
             <input type="text" value={search} onChange={(e)=>setSearch(e.target.value)}className="grow text-black" placeholder="Search" />
 
         
