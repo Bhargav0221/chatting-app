@@ -28,9 +28,10 @@ function search() {
       <form  onSubmit={handleSubmit}>
         <div className='flex space-x-3 h-[10vh]'>
           <label className="input input-bordered flex items-center gap-2 w-[80%]">
-            <input type="text" value={search} onChange={(e)=>setSearch(e.target.value)}className="grow" placeholder="Search" />
-
           </label>
+            <input type="text" value={search} onChange={(e)=>setSearch(e.target.value)}className="grow text-black" placeholder="Search" />
+
+        
           <button     >
             <IoSearch className='text-5xl p-2  hover:bg-gray-600 rounded-lg duration-300' />
           </button>
