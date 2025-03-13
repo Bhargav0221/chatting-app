@@ -30,7 +30,7 @@ function Message() {
 
       if (response.status === 200) {
         const updatedMessages = message.filter((msg) => msg._id !== msgId);
-        setmessage(updatedMessages);
+        setmessage([updatedMessages]);
         socket.emit("deltemessage", { msgId, conversationId: selectedconversation._id });
         toast.success("Message deleted successfully");
       }
