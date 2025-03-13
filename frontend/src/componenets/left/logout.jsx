@@ -28,7 +28,7 @@ function Logout() {
   };
 
   return (
-    <div className="flex justify-end items-start p-2">
+    <div className="flex justify-end items-start p-2 bg-black">
       <button
         onClick={handleLogout}
         className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg text-sm md:text-base font-semibold shadow-md hover:shadow-lg transition duration-300"
