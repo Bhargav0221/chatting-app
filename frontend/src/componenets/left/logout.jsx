@@ -28,10 +28,10 @@ function Logout() {
   };
 
   return (
-    <div className="w-full flex justify-end md:justify-center items-center p-3 bg-black text-white">
+    <div className="flex justify-end items-start p-2">
       <button
         onClick={handleLogout}
-        className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-400 hover:from-red-700 hover:to-red-500 px-4 py-2 rounded-xl text-sm md:text-base font-semibold shadow-md hover:shadow-lg transition duration-300"
+        className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg text-sm md:text-base font-semibold shadow-md hover:shadow-lg transition duration-300"
       >
         <MdOutlineLogout className="text-xl md:text-2xl" />
         <span className="hidden sm:inline">Logout</span>
