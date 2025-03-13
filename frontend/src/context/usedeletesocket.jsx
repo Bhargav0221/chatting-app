@@ -8,12 +8,8 @@ function usedeletesocket() {
     useEffect(()=>{
         if(!socket) return;
         const inlineHandler = (msgId) => {
-          setmessage((prevMessages) =>
-            Array.isArray(prevMessages)
-              ? prevMessages.filter((msg) => msg._id !== msgId)
-              : []
-          );
-          
+          const updatedMessages = message.filter((msg) => msg._id !== msgId);
+          setmessage([...updatedMessages])
           };
 
         socket.on("delete-message",inlineHandler);
