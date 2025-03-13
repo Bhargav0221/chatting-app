@@ -28,13 +28,13 @@ function Logout() {
   };
 
   return (
-    <div className="w-full md:w-auto flex justify-end p-2 bg-black text-white">
+    <div className="w-full flex justify-end md:justify-center items-center p-3 bg-black text-white">
       <button
         onClick={handleLogout}
-        className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition duration-300"
+        className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-400 hover:from-red-700 hover:to-red-500 px-4 py-2 rounded-xl text-sm md:text-base font-semibold shadow-md hover:shadow-lg transition duration-300"
       >
-        <MdOutlineLogout className="text-2xl" />
-        <span className="hidden md:inline">Logout</span>
+        <MdOutlineLogout className="text-xl md:text-2xl" />
+        <span className="hidden sm:inline">Logout</span>
       </button>
     </div>
   );
