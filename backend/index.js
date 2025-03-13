@@ -7,18 +7,15 @@ import cookieParser from 'cookie-parser';
 import Messageroute from'./routes/message.route.js';
 import{app, server} from"./Socketio/server.js";
 dotenv.config();
-const port=process.env.PORT;
+const port=process.env.PORT||5000;
 const URI=process.env.MONGODB_URI;
 
 
 app.use(express.json());    
-app.use(cors(
-    {
-        cors: {
-            origin: "*",
-        }
-    }
-))
+app.use(cors({
+    origin: "*",
+    credentials: true
+}));
 app.use(cookieParser());
 
 try{
