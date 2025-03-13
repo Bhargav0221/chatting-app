@@ -8,22 +8,30 @@ function Type() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-       
+        if (!message.trim()) return;
         sendmessage(message);
         setMessage("");
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex items-center gap-2">
-            <input 
-                type="text" 
-                placeholder="Type here..." 
-                value={message} 
+        <form
+            onSubmit={handleSubmit}
+            className="w-full flex items-center gap-3 px-4 py-3 bg-gray-100 rounded-2xl shadow-sm border border-gray-300"
+        >
+            <input
+                type="text"
+                placeholder="Type a message..."
+                value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-[70%] p-3 text-black border rounded-md"
+                className="flex-1 px-4 py-2 bg-transparent text-gray-800 placeholder-gray-500 outline-none text-base"
             />
-            <button type="submit" className="p-3 bg-blue-500 text-white rounded-md">
-                <IoSend />
+            <button
+                type="submit"
+                disabled={loading}
+                className="p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors duration-200 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Send"
+            >
+                <IoSend size={22} />
             </button>
         </form>
     );

@@ -20,7 +20,7 @@ function App() {
 <>
   
       <Routes>
-        <Route path="/" element={user ?( <div className='flex'>
+        <Route path="/" element={user ?( <div className='flex h-screen'>
           <Logout />
           <Left />
           <Right />
