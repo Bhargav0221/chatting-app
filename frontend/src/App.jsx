@@ -28,11 +28,11 @@ function App() {
           
           <div className="flex flex-col w-full md:w-[35%] lg:w-[30%] bg-black">\
           <Left />
-            <Logout />
+        
            
           </div>
-
-          {/* Right Chat Area */}
+           
+         
           <Right />
         </div>
       ) : (
