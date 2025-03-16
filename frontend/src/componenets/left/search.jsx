@@ -39,7 +39,7 @@ function search() {
 
 
           <button     >
-            <IoSearch className='text-5xl p-2  hover:bg-gray-600 rounded-lg duration-300' />
+            <IoSearch className=' md:w-[35%] text-5xl p-2  hover:bg-gray-600 rounded-lg duration-300' />
           </button>
         </div>
       </form>
