@@ -25,10 +25,11 @@ function App() {
     element={
       user ? (
         <div className="flex h-screen w-full">
-          {/* Left Sidebar with Logout + Left content */}
-          <div className="flex flex-col w-full md:w-[35%] lg:w-[30%] bg-black">
+          
+          <div className="flex flex-col w-full md:w-[35%] lg:w-[30%] bg-black">\
+          <Left />
             <Logout />
-            <Left />
+           
           </div>
 
           {/* Right Chat Area */}
