@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react'
 import { IoSearch } from "react-icons/io5";
 import usegetalluser from '../../context/usegetalluser';
 import useConversation from '../../statemanage/userconversation';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
-
-function Search() {
+function search() {
   const [search, setSearch] = useState("");
   const [allUsers] = usegetalluser();
   const { setselectedconversation } = useConversation();
-
+  console.log(allUsers);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!search.trim()) return;
+    if (!search) return;
     const conversation = allUsers.find((user) =>
       user.name?.toLowerCase().includes(search.toLowerCase())
     );
@@ -22,28 +22,30 @@ function Search() {
       toast.error("User not found");
     }
   };
-
   return (
-    <div className="px-3 py-2 w-full">
-      <form onSubmit={handleSubmit} className="w-full">
-        <div className="flex items-center w-full gap-2">
+
+
+    <div className='px-6 py-3'>
+      <form onSubmit={handleSubmit}>
+        <div className='flex space-x-3 h-[10vh]'>
+
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search users..."
-            className="w-full px-3 py-2 text-sm rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-black"
+            className="w-full md:w-[80%] px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-black shadow-sm transition duration-200"
           />
-          <button
-            type="submit"
-            className="p-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white transition duration-200 flex items-center justify-center"
-          >
-            <IoSearch className="text-lg sm:text-xl md:text-2xl" />
+
+
+          <button     >
+            <IoSearch className=' md:w-[35%] text-5xl p-2  hover:bg-gray-600 rounded-lg duration-300' />
           </button>
         </div>
       </form>
     </div>
-  );
+
+  )
 }
 
-export default Search;
+export default search
