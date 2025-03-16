@@ -26,7 +26,7 @@ function App() {
       user ? (
         <div className="flex h-screen w-full">
           
-          <div className="flex flex-col w-full md:w-[35%] lg:w-[30%] bg-black">\
+          <div className=" w-full md:w-[35%] lg:w-[30%] bg-black">\
           <Left />
         
            
