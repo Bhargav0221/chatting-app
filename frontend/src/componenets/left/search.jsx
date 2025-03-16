@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { IoSearch } from "react-icons/io5";
 import usegetalluser from '../../context/usegetalluser';
 import useConversation from '../../statemanage/userconversation';
-import { useState } from 'react';
 import { toast } from 'react-toastify';
-function search() {
+
+function Search() {
   const [search, setSearch] = useState("");
   const [allUsers] = usegetalluser();
   const { setselectedconversation } = useConversation();
-  console.log(allUsers);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!search) return;
+    if (!search.trim()) return;
     const conversation = allUsers.find((user) =>
       user.name?.toLowerCase().includes(search.toLowerCase())
     );
@@ -22,30 +22,26 @@ function search() {
       toast.error("User not found");
     }
   };
-  return (
 
-    <div className="px-4 py-3">
-    <form onSubmit={handleSubmit}>
-      <div className="flex items-center space-x-2">
+  return (
+    <div className="p-4">
+      <form onSubmit={handleSubmit} className="flex items-center space-x-2 w-full">
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search users..."
-          className="flex-grow px-4 py-2 rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-black"
+          className="flex-grow px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-black shadow-sm"
         />
         <button
           type="submit"
-          className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white transition"
-          title="Search"
+          className="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-white"
         >
-          <IoSearch className="text-xl" />
+          <IoSearch size={24} />
         </button>
-      </div>
-    </form>
-  </div>
-
-  )
+      </form>
+    </div>
+  );
 }
 
-export default search
+export default Search;
