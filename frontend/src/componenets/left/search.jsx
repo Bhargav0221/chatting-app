@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { IoSearch } from "react-icons/io5";
-import { IoMdCloudUpload } from "react-icons/io";
 import usegetalluser from '../../context/usegetalluser';
 import useConversation from '../../statemanage/userconversation';
 import { toast } from 'react-toastify';
@@ -9,7 +8,6 @@ function Search() {
   const [search, setSearch] = useState("");
   const [allUsers] = usegetalluser();
   const { setselectedconversation } = useConversation();
-  const [uploading, setUploading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,36 +20,6 @@ function Search() {
       setSearch("");
     } else {
       toast.error("User not found");
-    }
-  };
-
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('senderId', 'SENDER_ID'); // Replace dynamically
-    formData.append('chatId', 'CHAT_ID');     // Replace dynamically
-
-    setUploading(true);
-
-    try {
-      const res = await fetch('http://localhost:5000/api/upload/file', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await res.json();
-      if (data.chatMessage) {
-        toast.success("File uploaded successfully!");
-        // Optionally emit message using socket or add to message list
-      }
-    } catch (error) {
-      console.error("Upload error:", error);
-      toast.error("Upload failed");
-    } finally {
-      setUploading(false);
     }
   };
 
@@ -71,18 +39,7 @@ function Search() {
         >
           <IoSearch size={24} />
         </button>
-
-        {/* Upload File Button */}
-        <label className="p-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white cursor-pointer">
-          <IoMdCloudUpload size={24} />
-          <input
-            type="file"
-            onChange={handleFileUpload}
-            className="hidden"
-          />
-        </label>
       </form>
-      {uploading && <p className="text-sm text-gray-600 mt-2">Uploading file...</p>}
     </div>
   );
 }
