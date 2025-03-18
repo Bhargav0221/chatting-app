@@ -23,8 +23,8 @@ const useSendMessage = () => {
       );
 
       // Only update if message array is not empty
-      if (message.length >0 && newMsg.conversationId === selectedconversation._id) {
-        setmessage((prev) => [...prev, newMsg]);
+      if (message.length > 0) {
+        setmessage([...message, res.data.newmessage]);
       }
       else {
         setmessage([res.data.newmessage])
