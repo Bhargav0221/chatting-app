@@ -11,46 +11,53 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../context/authcontext';
 
-
 function Message() {
-  const{setmessage}=useConversation();
+  const { setmessage } = useConversation();
   const { message, loading } = Usegetmessage();
   usegetsocketmessage();
   usedeletesocket();
   const [hoveredMessage, setHoveredMessage] = useState(null);
   const { socket } = usecontext();
   const { selectedconversation } = useConversation();
- const [user]=AuthContext()
-  if (loading) {
-    return <Loading />;
-  }
+  const [user] = AuthContext();
 
-  const handleDelete = async (msgId) => {
-    if(message.sender==user._id)
-    {
+  if (loading) return <Loading />;
+
+  const handleDelete = async (msgId, senderId) => {
     if (!msgId) return;
 
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/Message/delete/${msgId}`);
+    const isSender = senderId === user._id;
 
-      if (response.status === 200) {
-        const updatedMessages = message.filter((msg) => msg._id !== msgId);
-        console.log("updated after deletion =",updatedMessages);
-         setmessage([...updatedMessages]);
-        socket.emit("deltemessage", { msgId, conversationId: selectedconversation._id });
-        toast.success("Message deleted successfully");
+    if (isSender) {
+      // Sender: Delete from both ends
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URL}/Message/delete/${msgId}`
+        );
+
+        if (response.status === 200) {
+          const updatedMessages = message.filter((msg) => msg._id !== msgId);
+          setmessage(updatedMessages);
+
+          socket.emit('deletemessage', {
+            msgId,
+            conversationId: selectedconversation._id,
+          });
+
+          toast.success('Message deleted for everyone');
+        }
+      } catch (error) {
+        toast.error('Failed to delete message');
+        console.log('Error deleting message:', error.response?.data || error.message);
       }
-    } catch (error) {
-      toast.error("Failed to delete message");
-      console.log("Error deleting message:", error.response?.data || error.message);
+    } else {
+      // Receiver: Just remove from their own view
+      const updatedMessages = message.filter((msg) => msg._id !== msgId);
+      setmessage(updatedMessages);
+      toast.info('Message deleted from your side only');
     }
-  }
-  else{
-    const updatedMessages = message.filter((msg) => msg._id !== msgId);
-    console.log("updated after deletion =",updatedMessages);
-     setmessage([...updatedMessages]);
-  }
-  }
+  };
+
   return (
     <>
       <div className="flex flex-col">
@@ -65,7 +72,7 @@ function Message() {
               <Mess message={msg} />
               {hoveredMessage === msg._id && (
                 <button
-                  onClick={() => handleDelete(msg._id)}
+                  onClick={() => handleDelete(msg._id, msg.sender)}
                   className="absolute right-2 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 transition-opacity duration-200"
                 >
                   Delete
