@@ -29,7 +29,7 @@ function Message() {
     const isSender = senderId === user._id;
 
     if (isSender) {
-      // Sender: Delete from both ends
+      
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URL}/Message/delete/${msgId}`
@@ -51,7 +51,7 @@ function Message() {
         console.log('Error deleting message:', error.response?.data || error.message);
       }
     } else {
-      // Receiver: Just remove from their own view
+     
       const updatedMessages = message.filter((msg) => msg._id !== msgId);
       setmessage(updatedMessages);
       toast.info('Message deleted from your side only');

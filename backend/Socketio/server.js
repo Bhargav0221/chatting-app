@@ -26,7 +26,7 @@ import { log } from "console";
         }
         console.log(users);
         io.emit("getonline",Object.keys(users))
-      socket.on("deltemessage",({msgId,conversationId})=>{
+      socket.on("deletemessage",({msgId,conversationId})=>{
       console.log("conversation",conversationId);
        const socketid=getReceiverSocketId(conversationId)
       console.log("socket is",socketid);
