@@ -13,7 +13,7 @@ import { useauth } from '../../context/authcontext';
 
 function Message() {
   const { setmessage } = useConversation();
-  const { message, loading } = Usegetmessage();
+  const { message, loading } = useConversation();
   usegetsocketmessage();
   usedeletesocket();
   const [hoveredMessage, setHoveredMessage] = useState(null);
