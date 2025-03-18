@@ -19,7 +19,7 @@ function Message() {
   const [hoveredMessage, setHoveredMessage] = useState(null);
   const { socket } = usecontext();
   const { selectedconversation } = useConversation();
-  const [user] = AuthContext();
+  const [user] = useauth();
 
   if (loading) return <Loading />;
 
