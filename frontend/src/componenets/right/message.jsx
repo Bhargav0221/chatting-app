@@ -9,6 +9,7 @@ import useConversation from '../../statemanage/userconversation';
 import usedeletesocket from '../../context/usedeletesocket';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '../../context/authcontext';
 
 
 function Message() {
@@ -19,12 +20,14 @@ function Message() {
   const [hoveredMessage, setHoveredMessage] = useState(null);
   const { socket } = usecontext();
   const { selectedconversation } = useConversation();
-
+ const [user]=AuthContext()
   if (loading) {
     return <Loading />;
   }
 
   const handleDelete = async (msgId) => {
+    if(message.sender==user._id)
+    {
     if (!msgId) return;
 
     try {
@@ -41,8 +44,13 @@ function Message() {
       toast.error("Failed to delete message");
       console.log("Error deleting message:", error.response?.data || error.message);
     }
-  };
-
+  }
+  else{
+    const updatedMessages = message.filter((msg) => msg._id !== msgId);
+    console.log("updated after deletion =",updatedMessages);
+     setmessage([...updatedMessages]);
+  }
+  }
   return (
     <>
       <div className="flex flex-col">
