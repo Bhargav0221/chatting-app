@@ -9,7 +9,7 @@ import useConversation from '../../statemanage/userconversation';
 import usedeletesocket from '../../context/usedeletesocket';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AuthContext } from '../../context/authcontext';
+import { useauth } from '../../context/authcontext';
 
 function Message() {
   const { setmessage } = useConversation();
