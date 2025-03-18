@@ -11,7 +11,7 @@ const usegetsocketmessage = () => {
         const handleNewMessage = (newmessage) => {
             if (
                 selectedconversation &&
-                newmessage.conversationId === selectedconversation._id
+                newmessage.reciever === selectedconversation._id
             ) {
                 setmessage((prev) => [...prev, newmessage]);
             }
