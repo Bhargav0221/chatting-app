@@ -15,12 +15,7 @@ const usegetsocketmessage = () => {
             ) {
                 setmessage((prev) => [...prev, newmessage]);
             }
-            else {
-                setmessage([newmessage]
-
-
-                )
-            }
+          
         };
 
         socket.on("newmessage", handleNewMessage);
