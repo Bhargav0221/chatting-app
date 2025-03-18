@@ -71,7 +71,7 @@ function Message() {
             >
               <Mess message={msg} />
               {hoveredMessage === msg._id && (
-                <button
+                <button 
                   onClick={() => handleDelete(msg._id, msg.sender)}
                   className="absolute right-2 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 transition-opacity duration-200"
                 >

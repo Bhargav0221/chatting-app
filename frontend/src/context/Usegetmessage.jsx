@@ -39,7 +39,7 @@ function Usegetmessage() {
     }
 }
 getmessage()
-    },[selectedconversation,setmessage])
+    },[selectedconversation])
   return {message,loading };
 }
 
