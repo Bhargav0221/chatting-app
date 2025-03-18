@@ -5,18 +5,13 @@ import useConversation from '../statemanage/userconversation';
 const usegetsocketmessage = () => {
     const { message, setmessage } = useConversation();
     const { socket } = usecontext();
-
+       const {selectedconversation } = useConversation();
     useEffect(() => {
         const handleNewMessage = (newmessage) => {
-            if (message.length > 0) {
+            if (message.length > 0 && newmessage.sender==selectedconversation._id) {
                 setmessage([...message, newmessage]);
             }
-            else {
-                setmessage([newmessage]
-
-
-                )
-            }
+       
         };
 
         socket.on("newmessage", handleNewMessage);
