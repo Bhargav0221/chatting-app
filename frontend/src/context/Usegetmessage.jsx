@@ -13,7 +13,7 @@ function Usegetmessage() {
         const getmessage=async()=>{
             console.log("messagesss");
             setloading(true)
-            if(selectedconversation)
+            if(selectedconversation&&selectedconversation._id)
             {
             try{
                 const token=localStorage.getItem("token");
