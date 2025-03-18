@@ -13,6 +13,7 @@ function Usegetmessage() {
         const getmessage=async()=>{
             console.log("messagesss");
             setloading(true)
+            setmessage([]);
             if(selectedconversation&&selectedconversation._id)
             {
             try{
