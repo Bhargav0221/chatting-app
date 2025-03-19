@@ -8,8 +8,8 @@ const usegetsocketmessage = () => {
        const {selectedconversation } = useConversation();
     useEffect(() => {
         const handleNewMessage = (newmessage) => {
-            if (message.length > 0 && newmessage.sender==selectedconversation._id) {
-                setmessage([...message, newmessage]);
+            if (newmessage.sender === selectedconversation?._id) {
+                setmessage(prev => [...prev, newmessage]);
             }
        
         };
