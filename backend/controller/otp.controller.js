@@ -28,7 +28,7 @@ export const sendotp=async(req,res)=>{
  
 }
 catch(error){
-  console("error occured",error);
+  console.log("error occured",error);
 }
 }
 export const verifyotp=async(req,res)=>{
