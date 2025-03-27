@@ -18,7 +18,7 @@
            methods: ["GET", "POST", "PUT", "DELETE"],
 
         edentials: true
-    }));cr
+    }));
     app.use(cookieParser());
 
     try{
