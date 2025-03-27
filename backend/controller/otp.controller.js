@@ -49,6 +49,6 @@ export const verifyotp=async(req,res)=>{
         res.status(300).json({message:"otp is wrong"})
     }
     delete otpstore[email];
-    return res.status(200).json({ success: true, message: "OTP verified successfully" });
+     res.status(200).json({ success: true, message: "OTP verified successfully" });
 
 }
