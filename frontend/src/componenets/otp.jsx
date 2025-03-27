@@ -1,18 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useauth } from "../context/authcontext";
 import { useNavigate } from "react-router-dom";
 
 const OTPVerification = () => {
-     const [user, setuser] = useauth();
-  const navigate=useNavigate();
+  const [user, setuser] = useauth();
+  const navigate = useNavigate();
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [message, setMessage] = useState("");
 
-  
-
   const email = localStorage.getItem("pendingEmail");
+
+  // ✅ Correct way to set the user from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem("messenger");
+    if (storedUser) {
+      try {
+        setuser(JSON.parse(storedUser)); // Set user only if valid data exists
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+      }
+    }
+  }, []); // Runs only when component mounts
+
+  console.log("User in OTPVerification:", user);
 
   // ✅ Send OTP
   const sendOtp = async () => {
@@ -27,15 +39,11 @@ const OTPVerification = () => {
 
   // ✅ Verify OTP
   const verifyOtp = async () => {
-    try { 
+    try {
       console.log("Sending:", { email, otp });
       await axios.post(`${import.meta.env.VITE_API_URL}/otp/verify-otp`, { email, otp });
       setMessage("OTP Verified Successfully!");
-      localStorage.removeItem("pendingEmail"); 
-      setuser(Json. parse(localStorage.getItem("messenger")));
-      console.log("User is made in signup", user);
-      
-      
+      localStorage.removeItem("pendingEmail");
     } catch (error) {
       setMessage("Invalid OTP. Try again.");
     }

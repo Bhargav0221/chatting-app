@@ -81,7 +81,7 @@ export const getuser=async (req,res)=>
  }
  catch(error){
     console.log("error in all user controoler"+error);
-    res.status(400).json({message:"server error"})
+    return res.status(400).json({message:"server error"})
  }
 }
 export const verifiedied=(req,res)=>{
