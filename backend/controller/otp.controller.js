@@ -2,7 +2,10 @@ import nodemailer from"nodemailer"
 const otpstore={};
 export const sendotp=async(req,res)=>{
     try{
- 
+  if(otpstore[email])
+  {
+    delete otpstore[email];
+  }
     const{email}=req.body;   
     const otp = Math.floor(100000 + Math.random() * 900000);    
     otpstore[email]={
