@@ -33,6 +33,8 @@ export const sendotp=async(req,res)=>{
 }
 catch(error){
   console.log("error occured",error);
+  return res.status(500).json({ message: "Failed to send OTP" }); // ✅ Ensuring response
+
 }
 }
 export const verifyotp=async(req,res)=>{
@@ -50,7 +52,7 @@ export const verifyotp=async(req,res)=>{
         return res.status(400).json({message:"otp expired"});
     }
     if(storedotp!==parseInt(otp,10)){
-       return  res.status(300).json({message:"otp is wrong"})
+       return  res.status(400).json({message:"otp is wrong"})
     }
     delete otpstore[email];
     return  res.status(200).json({ success: true, message: "OTP verified successfully" });
