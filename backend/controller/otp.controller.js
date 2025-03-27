@@ -49,7 +49,7 @@ export const verifyotp=async(req,res)=>{
         delete otpstore[email];
         return res.status(400).json({message:"otp expired"});
     }
-    if(storedotp!=parseInt(otp,10)){
+    if(storedotp!==parseInt(otp,10)){
        return  res.status(300).json({message:"otp is wrong"})
     }
     delete otpstore[email];
