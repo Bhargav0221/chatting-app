@@ -7,7 +7,7 @@ export const sendotp=async(req,res)=>{
     const otp = Math.floor(100000 + Math.random() * 900000);    
     otpstore[email]={
         otp,
-        expiry:Date.now()*5*60*1000,
+        expiry:Date.now()+5*60*1000,
     }
     const transporter=await nodemailer.createTransport({
         service:"gmail",
@@ -38,7 +38,7 @@ export const verifyotp=async(req,res)=>{
     if(Date.now()>expiry)
     {
         delete otpstore[email];
-        res.status(400),json({message:"otp expired"});
+        res.status(400).json({message:"otp expired"});
     }
     if(storedotp!=parseInt(otp,10)){
         res.status(300).json({message:"otp is wrong"})
