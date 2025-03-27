@@ -10,9 +10,7 @@ const OTPVerification = () => {
   const [otpSent, setOtpSent] = useState(false);
   const [message, setMessage] = useState("");
 
-  if (!user || !user.email) {
-    return <p className="text-center text-red-500">User not logged in!</p>;
-  }
+  
 
   const email = localStorage.getItem("pendingEmail");
 
