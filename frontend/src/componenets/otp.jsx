@@ -1,9 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { useauth } from "../context/authcontext";
-
+import { useNavigate } from "react-router-dom";
 const OTPVerification = () => {
-  const { user } = useauth();
+  const navigate=useNavigate();
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [message, setMessage] = useState("");
@@ -12,7 +12,7 @@ const OTPVerification = () => {
     return <p className="text-center text-red-500">User not logged in!</p>;
   }
 
-  const email = user.email;
+  const email = localStorage.getItem("pendingEmail");
 
   // ✅ Send OTP
   const sendOtp = async () => {
@@ -30,6 +30,8 @@ const OTPVerification = () => {
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/otp/verify-otp`, { email, otp });
       setMessage("OTP Verified Successfully!");
+      localStorage.removeItem("pendingEmail"); 
+      navigate('/');
     } catch (error) {
       setMessage("Invalid OTP. Try again.");
     }

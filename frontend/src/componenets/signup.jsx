@@ -39,6 +39,7 @@ function Signup() {
             }
             localStorage.setItem("messenger", JSON.stringify(response.data.user));
             localStorage.setItem("token", JSON.stringify(response.data.token));
+            localStorage.setItem("pendingEmail", formdata.email);
             console.log("Token is", response.data.token);
             setuser(response.data.user);
             console.log("User is made in signup", user);
