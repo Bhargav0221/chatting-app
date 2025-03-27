@@ -17,7 +17,7 @@
         origin: "https://chatting-app-topaz.vercel.app", 
            methods: ["GET", "POST", "PUT", "DELETE"],
 
-        edentials: true
+        credentials: true
     }));
     app.use(cookieParser());
 
