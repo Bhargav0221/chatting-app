@@ -36,12 +36,14 @@ function Signup() {
             console.log(response.data);
             if (response.data) {
                 toast.success("Signup successful");
+                localStorage.setItem("pendingEmail", formdata.email);
+                navigate('/otp'); // Redirect to OTP page
             }
             localStorage.setItem("messenger", JSON.stringify(response.data.user));
             localStorage.setItem("token", JSON.stringify(response.data.token));
             localStorage.setItem("pendingEmail", formdata.email);
             console.log("Token is", response.data.token);
-            setuser(response.data.user);
+            
             console.log("User is made in signup", user);
             
             navigate('/otp'); // Redirect to OTP page
