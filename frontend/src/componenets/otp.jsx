@@ -34,6 +34,7 @@ const OTPVerification = () => {
       setMessage("OTP Verified Successfully!");
       localStorage.removeItem("pendingEmail"); 
       setuser(Json. parse(localStorage.getItem("messenger")));
+      console.log("User is made in signup", user);
       
       
     } catch (error) {

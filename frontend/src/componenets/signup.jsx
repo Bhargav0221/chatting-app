@@ -44,7 +44,7 @@ function Signup() {
             localStorage.setItem("pendingEmail", formdata.email);
             console.log("Token is", response.data.token);
             
-            console.log("User is made in signup", user);
+        
             
             navigate('/otp'); // Redirect to OTP page
             console.log("navigating to otp");
