@@ -44,6 +44,7 @@ function Signup() {
             console.log("User is made in signup", user);
             
             navigate('/otp'); // Redirect to OTP page
+            console.log("navigating to otp");
         } catch (error) {
             console.log("Error in signup", error);
             toast.error("An error occurred");
