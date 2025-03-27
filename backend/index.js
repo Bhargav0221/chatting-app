@@ -14,11 +14,11 @@
 
     app.use(express.json());    
     app.use(cors({
-           origin: "*",
+        origin: "https://chatting-app-topaz.vercel.app", 
            methods: ["GET", "POST", "PUT", "DELETE"],
 
-        credentials: true
-    }));
+        edentials: true
+    }));cr
     app.use(cookieParser());
 
     try{
