@@ -34,6 +34,11 @@ catch(error){
 export const verifyotp=async(req,res)=>{
     const{email,otp}=req.body;
     const data=otpstore[email];
+    if (!data) {
+        return res.status(400).json({ message: "OTP not found or expired" });
+    }
+    
+    
     const{otp:storedotp,expiry}=data
     if(Date.now()>expiry)
     {
