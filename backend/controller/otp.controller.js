@@ -7,15 +7,14 @@ export const sendotp=async(req,res)=>{
     const otp = Math.floor(100000 + Math.random() * 900000);    
     otpstore[email]={
         otp,
-        expiry:Date.now()*5*60*10000
-
+        expiry:Date.now()*5*60*1000,
     }
-    const transporter=await nodemailer.transporter({
+    const transporter=await nodemailer.createTransport({
         service:"gmail",
         auth:{
             user:"singlabhargav2004@gmail.com",
             pass:"liug nudq psfa ojzx"
-        }
+        },
     })
         const mailoptions={
             from:"singlabhargav2004@gmail.com",
