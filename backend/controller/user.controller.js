@@ -75,7 +75,7 @@ export const getuser=async (req,res)=>
  try{
     const loggedinuser=req.user._id;
     const alluser=await User.find({_id:{$ne:loggedinuser }}).select("-password");
-    res.status(200).json({
+   return res.status(200).json({
      alluser
     });
  }

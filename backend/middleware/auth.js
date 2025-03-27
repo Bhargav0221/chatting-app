@@ -6,7 +6,7 @@ import User from "../models/models.js";
       const token = req.headers.authorization?.split(" ")[1]?.replace(/"/g, "").trim()||req.cookies.jwt;
     if(!token)
     {
-        res.status(400).json({message:"token not found"});
+        return res.status(400).json({message:"token not found"});
 
     }
     const decoded=jwt.verify(token,process.env.JWT_SECRET);
@@ -14,7 +14,7 @@ import User from "../models/models.js";
     const user=await User.findById(decoded.userid);
       if(!user)
       {
-        res.status(400).json({message:"no user"})
+       return  res.status(400).json({message:"no user"})
       }
       req.user=user;
     
