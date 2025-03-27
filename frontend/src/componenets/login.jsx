@@ -6,10 +6,12 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 function login() {
     const[user,setuser]=useauth();
+    const navigate=useNavigate();
     const [formdata,setformdata]=useState({
         email:'',
         password:'',
     })
+
     const handlechange=(e)=>{
         setformdata({...formdata,[e.target.name]:e.target.value});
     }
@@ -23,8 +25,9 @@ function login() {
         
        localStorage.setItem("messenger",JSON.stringify(response.data.user));
        localStorage.setItem("token",JSON.stringify(response.data.token));
-       setuser(response.data.user);
+       
        toast.success("Login Successful")
+       navigate("/otp");
       
              })
        .catch((error)=>{
