@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useauth } from "../context/authcontext";
 import { useNavigate } from "react-router-dom";
-import { response } from "express";
+
 const OTPVerification = () => {
      const [user, setuser] = useauth();
   const navigate=useNavigate();
