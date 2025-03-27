@@ -8,7 +8,7 @@ import { useauth } from './context/authcontext'
 import { Navigate } from 'react-router-dom'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
-
+import OTPVerification from './componenets/otp'
 
 
 function App() {
@@ -40,6 +40,7 @@ function App() {
       )
     }
   />
+  <Route path="/otp" element={OTPVerification}/>
   <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
   <Route path="/signup" element={user ? <Navigate to="/" /> : <Signup />} />
 </Routes>

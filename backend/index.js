@@ -6,6 +6,7 @@ import cors from"cors";
 import cookieParser from 'cookie-parser';
 import Messageroute from'./routes/message.route.js';
 import{app, server} from"./Socketio/server.js";
+import  Otproute from "./routes/otp.route.js"
 dotenv.config();
 const port=process.env.PORT||5000;
 const URI=process.env.MONGODB_URI;
@@ -34,6 +35,7 @@ app.get('/',(req,res)=>{
 })
 app.use("/user",userroute);
 app.use("/Message",Messageroute);
+app.use("/otp",Otproute);
 server.listen(port,()=>{
     try{
         console.log("server statrted succesfully");

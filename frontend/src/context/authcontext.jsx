@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
       // Check if initialUserState is null or undefined
       if (response.data.message=="token is valid") {
         if(initialUserState)
-        {
+                  {
         const parsedUser = JSON.parse(initialUserState);
 
         console.log("User from localStorage:", parsedUser); // Log user data to verify it's correct
