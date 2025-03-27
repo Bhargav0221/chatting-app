@@ -27,7 +27,8 @@ const OTPVerification = () => {
 
   // ✅ Verify OTP
   const verifyOtp = async () => {
-    try {
+    try { 
+      console.log("Sending:", { email, otp });
       await axios.post(`${import.meta.env.VITE_API_URL}/otp/verify-otp`, { email, otp });
       setMessage("OTP Verified Successfully!");
       localStorage.removeItem("pendingEmail"); 
