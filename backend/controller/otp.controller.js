@@ -27,7 +27,7 @@ export const sendotp=async(req,res)=>{
         }
         const sended=await transporter.sendMail(mailoptions)
       console.log ("otp is send");
-      res.status(200).json({message:"otp send successfull"});
+     return  res.status(200).json({message:"otp send successfull"});
  
 }
 catch(error){
@@ -49,7 +49,7 @@ export const verifyotp=async(req,res)=>{
         return res.status(400).json({message:"otp expired"});
     }
     if(storedotp!=parseInt(otp,10)){
-        res.status(300).json({message:"otp is wrong"})
+       return  res.status(300).json({message:"otp is wrong"})
     }
     delete otpstore[email];
     return  res.status(200).json({ success: true, message: "OTP verified successfully" });
