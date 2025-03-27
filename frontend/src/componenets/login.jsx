@@ -25,8 +25,8 @@ function login() {
         
        localStorage.setItem("messenger",JSON.stringify(response.data.user));
        localStorage.setItem("token",JSON.stringify(response.data.token));
-       
-       toast.success("Login Successful")
+       localStorage.setItem("pendingEmail", formdata.email);
+      toast.success("Login Successful")
        navigate("/otp");
       
              })
