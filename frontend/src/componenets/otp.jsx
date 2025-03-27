@@ -33,7 +33,7 @@ const OTPVerification = () => {
       await axios.post(`${import.meta.env.VITE_API_URL}/otp/verify-otp`, { email, otp });
       setMessage("OTP Verified Successfully!");
       localStorage.removeItem("pendingEmail"); 
-      setuser(localStorage.getItem("messenger"));
+      setuser(Json. parse(localStorage.getItem("messenger")));
       
       
     } catch (error) {
