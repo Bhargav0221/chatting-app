@@ -14,7 +14,7 @@
 
     app.use(express.json());    
     app.use(cors({
-        origin: "*",
+           origin: "https://chatting-app-topaz.vercel.app",
         credentials: true
     }));
     app.use(cookieParser());
