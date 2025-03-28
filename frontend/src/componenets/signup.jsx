@@ -26,10 +26,11 @@ function Signup() {
         }
         console.log("Form submitted", formdata);
         try {
-            if(!formdata.email.includes("@gmail.com")||!formdata.email.includes("@yahoo.com"))
-            {
-                toast("Enter Valid email");
-                return ;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(formdata.email)) {
+                toast.error("Enter a valid email address");
+                return;
             }
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/signup`, {
                 email: formdata.email,
