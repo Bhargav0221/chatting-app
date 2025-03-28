@@ -26,7 +26,7 @@ function Signup() {
         }
         console.log("Form submitted", formdata);
         try {
-            if1(formdata.email.endsWith("@gmail.com")||!formdata.email.endsWith("@yahoo.com")||!formdata.email.endsWith("@chitkara.edu.in"))
+            if(!(formdata.email.endsWith("@gmail.com")||!formdata.email.endsWith("@yahoo.com")||!formdata.email.endsWith("@chitkara.edu.in")))
             {
                 toast("Enter Valid email");
                 return ;
