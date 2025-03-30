@@ -56,7 +56,7 @@ function Signup() {
             console.log("navigating to otp");
         } catch (error) {
            
-            if(response.data.error=="Username already exist")
+            if(error.response.data.error=="Username already exist")
                 {
                    toast.error("please enter the unique username");
                    return ;
