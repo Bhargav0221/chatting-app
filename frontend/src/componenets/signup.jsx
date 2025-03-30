@@ -26,7 +26,7 @@ function Signup() {
         try {
             localStorage.setItem("pendingEmail", formdata.email);
             navigate("/otp");
-            if(localStorage.getItem("otpstatus")!==true)
+            if(localStorage.getItem("otpstatus")!=="true")
             {
                 toast.error("verify otp first");
                 return;
@@ -53,7 +53,7 @@ function Signup() {
             }
             localStorage.setItem("messenger", JSON.stringify(response.data.user));
             localStorage.setItem("token", JSON.stringify(response.data.token));
-            
+            localStorage.removeItem("otpstatus");
             setuser(response.data)
             console.log("user is made",user);
             console.log("Token is", response.data.token);
