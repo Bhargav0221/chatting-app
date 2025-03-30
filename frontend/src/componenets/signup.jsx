@@ -26,7 +26,7 @@ function Signup() {
         try {
             localStorage.setItem("pendingEmail", formdata.email);
             navigate("/otp");
-            if(localStorage.getItem("otpstatus"!==true))
+            if(localStorage.getItem("otpstatus")!==true)
             {
                 toast.error("verify otp first");
                 return;
