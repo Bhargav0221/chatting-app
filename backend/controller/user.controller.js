@@ -6,6 +6,15 @@ import jwt from"jsonwebtoken";
 export const signup=async (req,res)=>{
     try{
     const{name,email,password,confirmpassword}=req.body;
+    const username=await User.find({name});
+    if(username)
+    {
+        return res.status(400).json("Username already exist");
+
+    }
+    else{
+
+    
     if(password!=confirmpassword)
     {
         return res.status(400).json({message:"pass donot match"});
@@ -31,6 +40,7 @@ export const signup=async (req,res)=>{
       },token});
    }
 }
+    }
 
 catch(error){
  return res.status(400).json({error});
