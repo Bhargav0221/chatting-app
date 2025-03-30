@@ -39,7 +39,7 @@ function Signup() {
             });
 
             console.log(response.data);
-            if(response.data="Username already exist")
+            if(response.data.message=="Username already exist")
                 {
                    toast.error("please enter the unique username");
                    return ;
