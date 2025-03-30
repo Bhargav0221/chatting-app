@@ -39,10 +39,7 @@ function Signup() {
             });
 
             console.log(response.data);
-            if(response.data="Username already exist")
-            {
-               toast.error("please enter the unique username");
-            }
+         
             if (response.data) {
                 toast.success("Signup successful");
                 localStorage.setItem("pendingEmail", formdata.email);
@@ -58,9 +55,16 @@ function Signup() {
             navigate('/otp'); // Redirect to OTP page
             console.log("navigating to otp");
         } catch (error) {
+            if(response.data="Username already exist")
+                {
+                   toast.error("please enter the unique username");
+                }
+                else
+                {
             console.log("Error in signup", error);
             toast.error("An error occurred");
         }
+    }
     };
 
     return (
