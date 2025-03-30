@@ -19,18 +19,24 @@ function Signup() {
     };
 
     const handlesubmit = async (e) => {
+      
         e.preventDefault();
-        if (formdata.password !== formdata.confirmpassword) {
-            toast.error("Passwords do not match");
-            return;
-        }
-        console.log("Form submitted", formdata);
+     
+     
         try {
+            localStorage.setItem("pendingEmail", formdata.email);
+            navigate("/otp");
+            if(localStorage.getItem("otpstatus"!==true))
+            {
+                toast.error("verify otp first");
+                return;
+            }
             if(!(formdata.email.endsWith("@gmail.com")||formdata.email.endsWith("@yahoo.com")||formdata.email.endsWith("@chitkara.edu.in")))
             {
                 toast("Enter Valid email");
                 return ;
             }
+            
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/signup`, {
                 email: formdata.email,
                 name: formdata.username,
@@ -42,18 +48,20 @@ function Signup() {
            
             if (response.data) {
                 toast.success("Signup successful");
-                localStorage.setItem("pendingEmail", formdata.email);
+              
                
             }
             localStorage.setItem("messenger", JSON.stringify(response.data.user));
             localStorage.setItem("token", JSON.stringify(response.data.token));
-            localStorage.setItem("pendingEmail", formdata.email);
+            
+            setuser(response.data)
+            console.log("user is made",user);
             console.log("Token is", response.data.token);
             
         
             
-            navigate('/otp'); // Redirect to OTP page
-            console.log("navigating to otp");
+           
+        
         } catch (error) {
             console.log("Error in signup", error.response.data.error);
             if(error.response.data.error==="Username already exist")
@@ -68,8 +76,9 @@ function Signup() {
         
     
 }
-    };
 
+    
+    }
     return (
         <div className='h-screen w-full flex items-center justify-center bg-gray-100'>
             <form className='bg-white shadow-lg p-6 rounded-lg w-96' onSubmit={handlesubmit}>
@@ -104,5 +113,6 @@ function Signup() {
         </div>
     );
 }
+
 
 export default Signup;

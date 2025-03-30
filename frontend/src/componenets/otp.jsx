@@ -12,19 +12,8 @@ const OTPVerification = () => {
 
   const email = localStorage.getItem("pendingEmail");
 
-  // ✅ Correct way to set the user from localStorage
-  useEffect(() => {
-    const storedUser = localStorage.getItem("messenger");
-    if (storedUser) {
-      try {
-        setuser(JSON.parse(storedUser)); // Set user only if valid data exists
-      } catch (error) {
-        console.error("Error parsing user data:", error);
-      }
-    }
-  }, []); // Runs only when component mounts
 
-  console.log("User in OTPVerification:", user);
+  
 
   // ✅ Send OTP
   const sendOtp = async () => {
@@ -32,6 +21,7 @@ const OTPVerification = () => {
       await axios.post(`${import.meta.env.VITE_API_URL}/otp/send-otp`, { email });
       setOtpSent(true);
       setMessage("OTP sent successfully! Check your email.");
+      localStorage.setItem("otpstatus","true")
     } catch (error) {
       setMessage("Failed to send OTP. Try again.");
     }
