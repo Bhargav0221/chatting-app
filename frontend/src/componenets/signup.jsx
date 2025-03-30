@@ -61,7 +61,7 @@ function Signup() {
                    toast.error("please enter the unique username");
                    return ;
                 }
-                evlse
+                else
                                 {
 
             console.log("Error in signup", error);
