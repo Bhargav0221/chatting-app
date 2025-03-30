@@ -38,7 +38,7 @@ function Signup() {
                 confirmpassword: formdata.confirmpassword
             });
 
-            console.log(response.data);
+            console.log(response.data.message=="user created successfully");
             if(response.data.message=="Username already exist")
                 {
                    toast.error("please enter the unique username");
