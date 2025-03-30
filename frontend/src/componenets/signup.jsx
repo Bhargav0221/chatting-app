@@ -39,6 +39,10 @@ function Signup() {
             });
 
             console.log(response.data);
+            if(response.data="Username already exist")
+            {
+               toast.error("please enter the unique username");
+            }
             if (response.data) {
                 toast.success("Signup successful");
                 localStorage.setItem("pendingEmail", formdata.email);
