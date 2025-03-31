@@ -25,20 +25,13 @@ function Signup() {
         try {
             localStorage.setItem("pendingEmail", formdata.email);
 
-            // Navigate to OTP page after 1 second
-            setTimeout(() => {
-                navigate("/otp");
-            }, 1000);
+             localStorage.setItem("formdata",JSON.stringify(formdata))
+           
+          
+            
+                
+            
 
-            // Check OTP status
-            if (localStorage.getItem("otpstatus") !== "true") {
-                setTimeout(() => {
-                    toast.error("Verify OTP first");
-                }, 1500);
-                return;
-            }
-
-            // Validate email domain
             if (!(
                 formdata.email.endsWith("@gmail.com") || 
                 formdata.email.endsWith("@yahoo.com") || 
@@ -49,30 +42,10 @@ function Signup() {
                 }, 1500);
                 return;
             }
+            navigate("/otp");
 
-            // Send request to backend
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/signup`, {
-                email: formdata.email,
-                name: formdata.username,
-                password: formdata.password,
-                confirmpassword: formdata.confirmpassword,
-            });
-
-            if (response.data) {
-                setTimeout(() => {
-                    toast.success("Signup successful");
-                }, 1000);
-
-                // Store user data in localStorage
-                localStorage.setItem("messenger", JSON.stringify(response.data.user));
-                localStorage.setItem("token", JSON.stringify(response.data.token));
-                localStorage.removeItem("otpstatus");
-
-                setuser(response.data); // Update auth context
-
-                console.log("User is created:", response.data.user);
-                console.log("Token:", response.data.token);
-            }
+            
+           
 
         } catch (error) {
             console.error("Error in signup:", error.response?.data?.error || error);
