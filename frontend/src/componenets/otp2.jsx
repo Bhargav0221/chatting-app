@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useauth } from '../context/authcontext';
+import { useNavigate } from 'react-router-dom';
 function OtpVerification2() {
   const email=localStorage.getItem("pendingEmail");
+  const navigate=useNavigate();
   const[user,setuser]=useauth();
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
@@ -41,7 +43,7 @@ function OtpVerification2() {
        setuser(response.data);
        console.log('user is made',user);
       toast.success("Login Successful")
-     Navigate("/");
+     navigate("/");
       
              })
              .catch((error)=>{
