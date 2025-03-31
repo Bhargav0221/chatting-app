@@ -20,7 +20,7 @@ function login() {
         e.preventDefault();
 
         localStorage.setItem("pendingEmail",formdata.email);
-        localStorage.setItem("formdata",formdata);
+        localStorage.setItem("formdata",JSON.stringify(formdata));
          navigate("/otp2");
         }catch(error){
         console.log("error in login"+error);

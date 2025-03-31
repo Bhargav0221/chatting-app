@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-
+import axios from 'axios';
 function OtpVerification2() {
   const email=localStorage.getItem("pendingEmail");
   const [otp, setOtp] = useState('');
