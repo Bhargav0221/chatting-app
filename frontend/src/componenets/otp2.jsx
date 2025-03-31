@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useauth } from '../context/authcontext';
 function OtpVerification2() {
   const email=localStorage.getItem("pendingEmail");
+  const[user,setuser]=useauth();
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [message, setMessage] = useState('');

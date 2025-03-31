@@ -5,7 +5,7 @@ import { useauth } from '../context/authcontext';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 function login() {
-    const[user,setuser]=useauth();
+    
     const navigate=useNavigate();
     const [formdata,setformdata]=useState({
         email:'',
