@@ -15,25 +15,8 @@ function OtpVerification2() {
       await axios.post(`${import.meta.env.VITE_API_URL}/otp/send-otp`, { email });
       setOtpSent(true);
       setMessage("OTP sent successfully! Check your email.");
-      toast.success("Otp verified succesfuly");
-      const response=  axios.post(`${import.meta.env.VITE_API_URL}/user/login`,{
-             email:formdata.email,password:formdata.password
-            })
-            .then((response)=>{
-            
-             
-            localStorage.setItem("messenger",JSON.stringify(response.data.user));
-            localStorage.setItem("token",JSON.stringify(response.data.token));
-            localStorage.setItem("pendingEmail", formdata.email);
-            setuser(response.data);
-            console.log('user is made',user);
-           toast.success("Login Successful")
-        
-           
-                  })
-                  .catch((error)=>{
-                    console.log("error in login",error);
-                  })
+     
+     
       
      
     } catch (error) {
@@ -45,7 +28,25 @@ function OtpVerification2() {
  try{
     await axios.post(`${import.meta.env.VITE_API_URL}/otp/verify-otp`, { email, otp });
     setMessage("OTP Verified Successfully!");
-    toast.success("otp verified successfuly")
+   
+    const response=  axios.post(`${import.meta.env.VITE_API_URL}/user/login`,{
+        email:formdata.email,password:formdata.password
+       })
+       .then((response)=>{
+       
+        
+       localStorage.setItem("messenger",JSON.stringify(response.data.user));
+       localStorage.setItem("token",JSON.stringify(response.data.token));
+       localStorage.setItem("pendingEmail", formdata.email);
+       setuser(response.data);
+       console.log('user is made',user);
+      toast.success("Login Successful")
+   
+      
+             })
+             .catch((error)=>{
+               console.log("error in login",error);
+             })
  }
  catch(error)
  {
