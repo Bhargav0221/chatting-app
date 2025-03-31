@@ -12,7 +12,7 @@ const OTPVerification = () => {
 
   const email = localStorage.getItem("pendingEmail");
  const formData=JSON.parse(localStorage.getItem("formdata"));
-
+  console.log("formdata is",formData);
   
 
   // ✅ Send OTP
@@ -21,30 +21,9 @@ const OTPVerification = () => {
       await axios.post(`${import.meta.env.VITE_API_URL}/otp/send-otp`, { email });
       setOtpSent(true);
       setMessage("OTP sent successfully! Check your email.");
-      localStorage.setItem("otpstatus","true")
+     
       
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/signup`, {
-                       email: formData.email,
-                       name: formData.username,
-                       password: formData.password,
-                       confirmpassword: formData.confirmpassword,
-                   });
-       
-                   if (response.data) {
-                       setTimeout(() => {
-                           toast.success("Signup successful");
-                       }, 1000);
-       
-                       // Store user data in localStorage
-                       localStorage.setItem("messenger", JSON.stringify(response.data.user));
-                       localStorage.setItem("token", JSON.stringify(response.data.token));
-                       localStorage.removeItem("otpstatus");
-       
-                       setuser(response.data); // Update auth context
-       
-                       console.log("User is created:", response.data.user);
-                       console.log("Token:", response.data.token);
-                   }
+     
     } catch (error) {
       setMessage("Failed to send OTP. Try again.");
     }
@@ -56,6 +35,28 @@ const OTPVerification = () => {
       console.log("Sending:", { email, otp });
       await axios.post(`${import.meta.env.VITE_API_URL}/otp/verify-otp`, { email, otp });
       setMessage("OTP Verified Successfully!");
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/signup`, {
+        email: formData.email,
+        name: formData.username,
+        password: formData.password,
+        confirmpassword: formData.confirmpassword,
+    });
+
+    if (response.data) {
+        setTimeout(() => {
+            toast.success("Signup successful");
+        }, 1000);
+
+        // Store user data in localStorage
+        localStorage.setItem("messenger", JSON.stringify(response.data.user));
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+        localStorage.removeItem("otpstatus");
+
+        setuser(response.data); // Update auth context
+
+        console.log("User is created:", response.data.user);
+        console.log("Token:", response.data.token);
+    }
       localStorage.removeItem("pendingEmail");
       navigate("/");
     } catch (error) {
