@@ -16,24 +16,16 @@ function login() {
         setformdata({...formdata,[e.target.name]:e.target.value});
     }
     const handlesubmit=(e)=>{
+        try{
         e.preventDefault();
-       axios.post(`${import.meta.env.VITE_API_URL}/user/login`,{
-        email:formdata.email,password:formdata.password
-       })
-       .then((response)=>{
-       
-        
-       localStorage.setItem("messenger",JSON.stringify(response.data.user));
-       localStorage.setItem("token",JSON.stringify(response.data.token));
-       localStorage.setItem("pendingEmail", formdata.email);
-      toast.success("Login Successful")
-       navigate("/otp");
-      
-             })
-       .catch((error)=>{
+
+        localStorage.setItem("pendingEmail",formdata.email);
+        localStorage.setItem("formdata",formdata);
+         navigate("/otp2");
+        }catch(error){
         console.log("error in login"+error);
       toast.error("error occured ")
-       })
+       }
     }
     return (
         <div className='h-screen w-full flex items-center justify-center bg-gray-100'>
