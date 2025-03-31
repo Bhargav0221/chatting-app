@@ -11,7 +11,7 @@ const OTPVerification = () => {
   const [message, setMessage] = useState("");
 
   const email = localStorage.getItem("pendingEmail");
- const formData=localStorage.getItem(JSON.parse("formdata"));
+ const formData=JSON.parse(localStorage.getItem("formdata"));
 
   
 
