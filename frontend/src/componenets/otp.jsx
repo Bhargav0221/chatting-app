@@ -12,6 +12,7 @@ const OTPVerification = () => {
 
   const email = localStorage.getItem("pendingEmail");
  const formData=JSON.parse(localStorage.getItem("formdata"));
+ localStorage.removeItem("formdata");
   console.log("formdata is",formData);
   
 
