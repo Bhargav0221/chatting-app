@@ -41,7 +41,7 @@ function OtpVerification2() {
        setuser(response.data);
        console.log('user is made',user);
       toast.success("Login Successful")
-   
+     Navigate("/");
       
              })
              .catch((error)=>{
