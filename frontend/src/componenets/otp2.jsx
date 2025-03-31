@@ -9,13 +9,14 @@ function OtpVerification2() {
   const [otpSent, setOtpSent] = useState(false);
   const [message, setMessage] = useState('');
   const formdata=JSON.parse(localStorage.getItem("formdata"));
+  console.log("form in login is",formdata);
   const sendOtp = async () => {
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/otp/send-otp`, { email });
       setOtpSent(true);
       setMessage("OTP sent successfully! Check your email.");
       toast.success("Otp verified succesfuly");
-        axios.post(`${import.meta.env.VITE_API_URL}/user/login`,{
+      const response=  axios.post(`${import.meta.env.VITE_API_URL}/user/login`,{
              email:formdata.email,password:formdata.password
             })
             .then((response)=>{
@@ -24,6 +25,8 @@ function OtpVerification2() {
             localStorage.setItem("messenger",JSON.stringify(response.data.user));
             localStorage.setItem("token",JSON.stringify(response.data.token));
             localStorage.setItem("pendingEmail", formdata.email);
+            setuser(response.data);
+            console.log('user is made',user);
            toast.success("Login Successful")
         
            
