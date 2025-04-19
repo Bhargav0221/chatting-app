@@ -42,7 +42,7 @@ function Signup() {
             }
             localStorage.setItem("pendingEmail", formdata.email);
 
-             localStorage.setItem("formdata",JSON.stringify(formdata));
+             localStorage.setItem("formdata",formdata);
             navigate("/otp");
 
             
