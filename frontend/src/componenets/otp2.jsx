@@ -47,6 +47,7 @@ function OtpVerification2() {
       
              })
              .catch((error)=>{
+               toast.error("error in login",error);
                console.log("error in login",error);
              })
  }
