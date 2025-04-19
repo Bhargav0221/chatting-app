@@ -44,8 +44,12 @@ function Signup() {
             console.log("form is",formdata);
             
                        localStorage.setItem("formdata",JSON.stringify(formdata))
-            navigate("/otp");
+                       console.log("Stored:", localStorage.getItem("formdata"));
+                       setTimeout(() => {
+                        navigate("/otp");
 
+                       }, 20);
+          
         
            
 
