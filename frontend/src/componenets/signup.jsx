@@ -41,8 +41,7 @@ function Signup() {
                 return;
             }
             localStorage.setItem("pendingEmail", formdata.email);
-
-             localStorage.setItem("formdata",JSON.stringify(formdata))
+            console.log("formdat is",formdata);
             navigate("/otp");
 
             
