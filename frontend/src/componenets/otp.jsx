@@ -12,7 +12,7 @@ const OTPVerification = () => {
 
   const email = localStorage.getItem("pendingEmail");
  const formData=JSON.parse(localStorage.getItem("formdata"));
-
+ console.log("formdata is",formData);
   
 
   // ✅ Send OTP
@@ -58,7 +58,7 @@ const OTPVerification = () => {
         console.log("Token:", response.data.token);
         localStorage.removeItem("pendingEmail");
         localStorage.removeItem("formdata");
-        console.log("formdata is",formData);
+        
         navigate("/");
     }
      
