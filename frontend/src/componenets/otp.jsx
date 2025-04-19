@@ -57,9 +57,10 @@ const OTPVerification = () => {
 
         console.log("User is created:", response.data.user);
         console.log("Token:", response.data.token);
+        localStorage.removeItem("pendingEmail");
+        navigate("/");
     }
-      localStorage.removeItem("pendingEmail");
-      navigate("/");
+     
     } catch (error) {
       console.log("signup erro is",error);
       c
