@@ -74,15 +74,15 @@ function Signup() {
                     </label>
 
                     <label className="flex items-center border rounded-md p-2 bg-gray-50">
-                        <input type="text" name="username" className="ml-2 w-full bg-transparent outline-none" placeholder="Username" value={formdata.username} onChange={handlechange} required />
+                        <input type="text" name="username"  className="ml-2 w-full bg-transparent outline-none" placeholder="Username" value={formdata.username} onChange={handlechange} required />
                     </label>
 
                     <label className="flex items-center border rounded-md p-2 bg-gray-50">
-                        <input type="password" name="password" className="ml-2 w-full bg-transparent outline-none" placeholder="Password" value={formdata.password} onChange={handlechange} required />
+                        <input type="password" name="password"  className="ml-2 w-full bg-transparent outline-none" placeholder="Password" value={formdata.password} onChange={handlechange} required />
                     </label>
 
                     <label className="flex items-center border rounded-md p-2 bg-gray-50">
-                        <input type="password" name="confirmpassword" className="ml-2 w-full bg-transparent outline-none" placeholder="Confirm Password" value={formdata.confirmpassword} onChange={handlechange} required />
+                        <input type="password" name="confirmpassword"  className="ml-2 w-full bg-transparent outline-none" placeholder="Confirm Password" value={formdata.confirmpassword} onChange={handlechange} required />
                     </label>
                 </div>
 
@@ -90,7 +90,7 @@ function Signup() {
                     Already have an account? <Link to="/login" className="text-blue-500">Login</Link>
                 </p>
 
-                <button type="submit" className="mt-4 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
+                <button type="submit" onClick={handlesubmit} className="mt-4 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
                     Sign Up
                 </button>
             </form>
