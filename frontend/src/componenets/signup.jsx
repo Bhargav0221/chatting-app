@@ -23,9 +23,7 @@ function Signup() {
         e.preventDefault();
 
         try {
-            localStorage.setItem("pendingEmail", formdata.email);
-
-             localStorage.setItem("formdata",JSON.stringify(formdata))
+            
            
           
             
@@ -42,6 +40,9 @@ function Signup() {
                 }, 1500);
                 return;
             }
+            localStorage.setItem("pendingEmail", formdata.email);
+
+             localStorage.setItem("formdata",JSON.stringify(formdata));
             navigate("/otp");
 
             
