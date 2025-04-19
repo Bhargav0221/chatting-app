@@ -18,7 +18,7 @@ function login() {
     const handlesubmit=(e)=>{
         try{
         e.preventDefault();
-
+       localStorage.setItem("pendingEmail",formdata.email);
         localStorage.setItem("formdata", JSON.stringify(formdata));
 
          navigate("/otp2");
