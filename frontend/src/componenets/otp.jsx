@@ -63,7 +63,7 @@ const OTPVerification = () => {
      
     } catch (error) {
       console.log("signup erro is",error);
-      c
+      
       setMessage("Invalid OTP. Try again.");
     }
   };
