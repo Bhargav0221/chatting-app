@@ -35,14 +35,14 @@ function Signup() {
                 formdata.email.endsWith("@yahoo.com") || 
                 formdata.email.endsWith("@chitkara.edu.in")
             )) {
-                setTimeout(() => {
+                
                     toast.error("Enter a valid email");
-                }, 1500);
+                
                 return;
             }
             localStorage.setItem("pendingEmail", formdata.email);
 
-             localStorage.setItem("formdata",formdata);
+             localStorage.setItem("formdata",JSON.stringify(formdata))
             navigate("/otp");
 
             
@@ -91,7 +91,7 @@ function Signup() {
                     Already have an account? <Link to="/login" className="text-blue-500">Login</Link>
                 </p>
 
-                <button type="submit" onClick={handlesubmit} className="mt-4 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
+                <button type="submit" className="mt-4 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
                     Sign Up
                 </button>
             </form>
