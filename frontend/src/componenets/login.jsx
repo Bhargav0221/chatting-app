@@ -20,7 +20,7 @@ function login() {
         e.preventDefault();
 
         localStorage.setItem("formdata", JSON.stringify(formdata));
-        console.log("Stored:", localStorage.getItem("formdata"));
+
          navigate("/otp2");
         }catch(error){
         console.log("error in login"+error);
