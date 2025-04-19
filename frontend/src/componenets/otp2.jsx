@@ -1,98 +1,98 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import axios from 'axios';
-import { useauth } from '../context/authcontext';
-import { useNavigate } from 'react-router-dom';
-function OtpVerification2() {
-  const email=localStorage.getItem("pendingEmail");
-  const navigate=useNavigate();
-  const[user,setuser]=useauth();
-  const [otp, setOtp] = useState('');
-  const [otpSent, setOtpSent] = useState(false);
-  const [message, setMessage] = useState('');
-  const formdata=JSON.parse(localStorage.getItem("formdata"));
-  console.log("form in login is",formdata);
-  const sendOtp = async () => {
-    try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/otp/send-otp`, { email });
-      setOtpSent(true);
-      setMessage("OTP sent successfully! Check your email.");
-     
-     
+  import React, { useState } from 'react';
+  import { toast } from 'react-toastify';
+  import axios from 'axios';
+  import { useauth } from '../context/authcontext';
+  import { useNavigate } from 'react-router-dom';
+  function OtpVerification2() {
+    const email=localStorage.getItem("pendingEmail");
+    const navigate=useNavigate();
+    const[user,setuser]=useauth();
+    const [otp, setOtp] = useState('');
+    const [otpSent, setOtpSent] = useState(false);
+    const [message, setMessage] = useState('');
+    const formdata=JSON.parse(localStorage.getItem("formdata"));
+    console.log("form in login is",formdata);
+    const sendOtp = async () => {
+      try {
+        await axios.post(`${import.meta.env.VITE_API_URL}/otp/send-otp`, { email });
+        setOtpSent(true);
+        setMessage("OTP sent successfully! Check your email.");
       
-     
-    } catch (error) {
-      setMessage("Failed to send OTP. Try again.");
-    }
-  };
-
-  const verifyOtp =async () => {
- try{
-    await axios.post(`${import.meta.env.VITE_API_URL}/otp/verify-otp`, { email, otp });
-    setMessage("OTP Verified Successfully!");
-   
-    const response=  axios.post(`${import.meta.env.VITE_API_URL}/user/login`,{
-        email:formdata.email,password:formdata.password
-       })
-       .then((response)=>{
-       
+      
         
-       localStorage.setItem("messenger",JSON.stringify(response.data.user));
-       localStorage.setItem("token",JSON.stringify(response.data.token));
-       localStorage.setItem("pendingEmail", formdata.email);
-       setuser(response.data);
-       console.log('user is made',user);
-      toast.success("Login Successful")
-     navigate("/");
       
-             })
-             .catch((error)=>{
-               toast.error("error in login",error);
-               console.log("error in login",error);
-             })
- }
- catch(error)
- {
-    setMessage("Invalid OTP. Try again.");
- }
-  };
+      } catch (error) {
+        setMessage("Failed to send OTP. Try again.");
+      }
+    };
 
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
-        <h2 className="text-2xl font-bold text-center mb-4">OTP Verification</h2>
-        {message && <p className="text-center text-sm text-gray-600">{message}</p>}
+    const verifyOtp =async () => {
+  try{
+      await axios.post(`${import.meta.env.VITE_API_URL}/otp/verify-otp`, { email, otp });
+      setMessage("OTP Verified Successfully!");
+    
+      const response=  axios.post(`${import.meta.env.VITE_API_URL}/user/login`,{
+          email:formdata.email,password:formdata.password
+        })
+        .then((response)=>{
+        
+          
+        localStorage.setItem("messenger",JSON.stringify(response.data.user));
+        localStorage.setItem("token",JSON.stringify(response.data.token));
+        localStorage.setItem("pendingEmail", formdata.email);
+        setuser(response.data);
+        console.log('user is made',user);
+        toast.success("Login Successful")
+      navigate("/");
+        
+              })
+              .catch((error)=>{
+                toast.error("error in login",error);
+                console.log("error in login",error);
+              })
+  }
+  catch(error)
+  {
+      setMessage("Invalid OTP. Try again.");
+  }
+    };
 
-        {!otpSent && (
-          <button
-            onClick={sendOtp}
-            className="mt-3 w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-          >
-            Send OTP to {email}
-          </button>
-        )}
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+          <h2 className="text-2xl font-bold text-center mb-4">OTP Verification</h2>
+          {message && <p className="text-center text-sm text-gray-600">{message}</p>}
 
-        {otpSent && (
-          <div>
-            <label className="block text-gray-700 mt-4">Enter OTP</label>
-            <input
-              type="text"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              className="w-full p-2 border rounded mt-1"
-              placeholder="Enter OTP"
-            />
+          {!otpSent && (
             <button
-              onClick={verifyOtp}
-              className="mt-3 w-full bg-green-500 text-white p-2 rounded hover:bg-green-600"
+              onClick={sendOtp}
+              className="mt-3 w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
             >
-              Verify OTP
+              Send OTP to {email}
             </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+          )}
 
-export default OtpVerification2;
+          {otpSent && (
+            <div>
+              <label className="block text-gray-700 mt-4">Enter OTP</label>
+              <input
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                className="w-full p-2 border rounded mt-1"
+                placeholder="Enter OTP"
+              />
+              <button
+                onClick={verifyOtp}
+                className="mt-3 w-full bg-green-500 text-white p-2 rounded hover:bg-green-600"
+              >
+                Verify OTP
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  export default OtpVerification2;
