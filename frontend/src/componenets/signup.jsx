@@ -48,7 +48,7 @@ function Signup() {
                        setTimeout(() => {
                         navigate("/otp");
 
-                       }, 20);
+                       }, 200);
           
         
            
