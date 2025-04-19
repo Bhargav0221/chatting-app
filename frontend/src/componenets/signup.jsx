@@ -41,10 +41,12 @@ function Signup() {
                 return;
             }
             localStorage.setItem("pendingEmail", formdata.email);
-            console.log("formdat is",formdata);
+            console.log("form is",formdata);
+            
+                       localStorage.setItem("formdata",JSON.stringify(formdata))
             navigate("/otp");
 
-            
+        
            
 
         } catch (error) {
