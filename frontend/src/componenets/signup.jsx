@@ -46,9 +46,10 @@ function Signup() {
                        localStorage.setItem("formdata",JSON.stringify(formdata))
                        console.log("Stored:", localStorage.getItem("formdata"));
                        setTimeout(() => {
+                        toast.success("redirecting to otp please wait");
                         navigate("/otp");
 
-                       }, 200);
+                       }, 1000);
           
         
            
