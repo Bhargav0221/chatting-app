@@ -17,7 +17,7 @@ export const sendotp=async(req,res)=>{
         service:"gmail",
         auth:{
             user:"singlabhargav2004@gmail.com",
-            pass:"liug nudq psfa ojzx"
+            pass:"usat eiwy dhhn obsl"
         },
     })
         const mailoptions={
