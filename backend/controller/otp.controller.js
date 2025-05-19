@@ -33,7 +33,7 @@ export const sendotp=async(req,res)=>{
 }
 catch(error){
   console.log("error occured",error);
-  return res.status(500).json({ message: "Failed to send OTP" }); // ✅ Ensuring response
+  return res.status(500).json(error); // ✅ Ensuring response
 
 }
 }
