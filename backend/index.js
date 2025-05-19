@@ -14,8 +14,7 @@
 
     app.use(express.json());    
     app.use(cors({
-        origin: ["https://chatting-app-topaz.vercel.app", 
-             "http://localhost:5173"],
+        origin: "https://chatting-app-topaz.vercel.app", 
            methods: ["GET", "POST", "PUT", "DELETE"],
 
         credentials: true
@@ -41,7 +40,7 @@
     app.use("/otp",Otproute);
     server.listen(port,()=>{
         try{
-            console.log(`server statrted succesfully ${port}`);
+            console.log("server statrted succesfully");
         }
         catch(error)
         {
