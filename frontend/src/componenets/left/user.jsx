@@ -14,15 +14,7 @@ function User() {
 
   return (
     <div className='max-h-[90vh] overflow-y-auto h-screen flex flex-col p-4'>
-      <div className='flex justify-between items-center mb-4'>
-        <h2 className='text-xl font-semibold'>All Users</h2>
-        <button 
-          onClick={handleUpload} 
-          className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition'
-        >
-          Upload
-        </button>
-      </div>
+   
 
       {Array.isArray(alluser) && alluser.length > 0 ? (
         alluser.map((user, index) => (
