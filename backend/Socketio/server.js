@@ -6,12 +6,11 @@ import { log } from "console";
     const app = express();
     const server = http.createServer(app);
 
-    const io = new Server(server, {
-        cors: {
-            origin: "*",
-            methods: ["GET", "POST"]
-        }
-    });
+    app.use(cors({
+    origin: "https://chatting-app-topaz.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true
+}));
     const users={};
     export const getReceiverSocketId = (receiverId) => {
         return users[receiverId];
