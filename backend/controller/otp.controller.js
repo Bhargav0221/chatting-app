@@ -15,10 +15,10 @@ export const sendotp=async(req,res)=>{
     }
        const transporter = nodemailer.createTransport({
       host: "smtp.sendgrid.net",
-      port: 587,
-      secure: false, // true for 465
+      port: 487,
+      secure: false,  
       auth: {
-        user: "apikey", // literally the word "apikey"
+        user: "apikey", 
         pass:"SG.fzT7M2t5TvCKJIa8zPgBvQ.oXahf3YyMX_pZh6npN9Lgad4PPvsLdWOVWQsLLZpivICopied!",
       },
     });
