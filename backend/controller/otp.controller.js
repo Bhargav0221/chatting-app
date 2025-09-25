@@ -13,11 +13,11 @@ export const sendotp=async(req,res)=>{
         otp,
         expiry:Date.now()+5*60*1000,
     }
-    const transporter=await nodemailer.createTransport({
-        service:"gmail",
-        auth:{
-            user:"singlabhargav2004@gmail.com",
-            pass:"usat eiwy dhhn obsl"
+    const transporter=nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: "singlabhargav2004@gmail.com",
+            pass: "usat eiwy dhhn obsl"
         },
     })
         const mailoptions={
