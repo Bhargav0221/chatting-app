@@ -1,49 +1,47 @@
-import sgMail from "@sendgrid/mail";
+import nodemailer from "nodemailer";
 
-const otpstore = {};
+const otpStore = {};
 
-sgMail.setApiKey("SG.fzT7M2t5TvCKJIa8zPgBvQ.oXahf3YyMX_pZh6npN9Lgad4PPvsLdWOVWQsLLZpivICopied!");
-
-export const sendotp = async (req, res) => {
+export const sendOtp = async (req, res) => {
   try {
     const { email } = req.body;
-    if (otpstore[email]) {
-      delete otpstore[email];
-    }
+    if (otpStore[email]) delete otpStore[email];
     const otp = Math.floor(100000 + Math.random() * 900000);
-    otpstore[email] = {
-      otp,
-      expiry: Date.now() + 5 * 60 * 1000
-    };
-    const msg = {
+    otpStore[email] = { otp, expiry: Date.now() + 5 * 60 * 1000 };
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "singlabhargav2004@gmail.com",
+        pass: "etrp cpes pcff mtew",
+      },
+    });
+
+    await transporter.sendMail({
+      from: process.env.GMAIL_USER,
       to: email,
-      from: "singlabhargav2004@gmail.com",
-      subject: "Your OTP is",
-      text: `Your OTP is ${otp}`
-    };
-    await sgMail.send(msg);
-    console.log("OTP sent successfully to", email);
+      subject: "Your OTP Code",
+      text: `Your OTP is ${otp}`,
+    });
+
     return res.status(200).json({ message: "OTP sent successfully" });
   } catch (error) {
-    console.log("Error occurred:", error);
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({ message: "Failed to send OTP" });
   }
 };
 
-export const verifyotp = async (req, res) => {
+export const verifyOtp = (req, res) => {
   const { email, otp } = req.body;
-  const data = otpstore[email];
-  if (!data) {
-    return res.status(400).json({ message: "OTP not found or expired" });
-  }
-  const { otp: storedotp, expiry } = data;
+  const data = otpStore[email];
+  if (!data) return res.status(400).json({ message: "OTP not found or expired" });
+  const { otp: storedOtp, expiry } = data;
   if (Date.now() > expiry) {
-    delete otpstore[email];
+    delete otpStore[email];
     return res.status(400).json({ message: "OTP expired" });
   }
-  if (storedotp !== parseInt(otp, 10)) {
-    return res.status(400).json({ message: "OTP is wrong" });
+  if (storedOtp !== parseInt(otp, 10)) {
+    return res.status(400).json({ message: "Invalid OTP" });
   }
-  delete otpstore[email];
+  delete otpStore[email];
   return res.status(200).json({ success: true, message: "OTP verified successfully" });
 };
