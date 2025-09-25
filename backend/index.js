@@ -8,7 +8,7 @@
     import{app, server} from"./Socketio/server.js";
     import  Otproute from "./routes/otp.route.js"
     dotenv.config();
-    const port=process.env.PORT||5000;
+    const port=process.env.PORT||3000;
     const URI=process.env.MONGODB_URI;
 
 
