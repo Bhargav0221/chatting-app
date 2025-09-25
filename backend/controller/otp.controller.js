@@ -13,13 +13,15 @@ export const sendotp=async(req,res)=>{
         otp,
         expiry:Date.now()+5*60*1000,
     }
-    const transporter=nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: "singlabhargav2004@gmail.com",
-            pass: "qhlo tats seiw llae"
-        },
-    })
+       const transporter = nodemailer.createTransport({
+      host: "smtp.sendgrid.net",
+      port: 587,
+      secure: false, // true for 465
+      auth: {
+        user: "apikey", // literally the word "apikey"
+        pass:"SG.fzT7M2t5TvCKJIa8zPgBvQ.oXahf3YyMX_pZh6npN9Lgad4PPvsLdWOVWQsLLZpivICopied!",
+      },
+    });
         const mailoptions={
             from:"singlabhargav2004@gmail.com",
             to:email,
