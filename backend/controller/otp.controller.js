@@ -15,7 +15,7 @@ export const sendotp=async(req,res)=>{
     }
        const transporter = nodemailer.createTransport({
       host: "smtp.sendgrid.net",
-      port: 487,
+      port: 465,
       secure: false,  
       auth: {
         user: "apikey", 
