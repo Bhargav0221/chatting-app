@@ -18,7 +18,7 @@ export const sendotp = async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: process.env.GMAIL_USER,
+      from: "singlabhargav2004@gmail.com" ,
       to: email,
       subject: "Your OTP Code",
       text: `Your OTP is ${otp}`,
