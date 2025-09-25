@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 const otpStore = {};
 
-export const sendOtp = async (req, res) => {
+export const sendotp = async (req, res) => {
   try {
     const { email } = req.body;
     if (otpStore[email]) delete otpStore[email];
@@ -30,7 +30,7 @@ export const sendOtp = async (req, res) => {
   }
 };
 
-export const verifyOtp = (req, res) => {
+export const verifyotp = (req, res) => {
   const { email, otp } = req.body;
   const data = otpStore[email];
   if (!data) return res.status(400).json({ message: "OTP not found or expired" });
