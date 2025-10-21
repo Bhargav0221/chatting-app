@@ -14,21 +14,21 @@
 
     app.use(express.json());    
     app.use(cors({
-        origin: "https://chatting-app-topaz.vercel.app", 
+        origin: "https://chatting-app-topaz.vercel.app",
            methods: ["GET", "POST", "PUT", "DELETE"],
 
         credentials: true
     }));
     app.use(cookieParser());
 
-    try{
-        mongoose.connect(URI).then(
+ 
+        mongoose.connect(URI).then(()=>
             console.log("mongo connected")
         )
     .catch((err)=>console.log(err))
 
-    }
-    catch(error){}
+    
+    
 
 
 
