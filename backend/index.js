@@ -16,7 +16,7 @@
     app.use(
   cors({
     origin: [
-      
+      "http://localhost:5173/",
       "https://chatting-app-topaz.vercel.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],

@@ -27,6 +27,8 @@ function Right() {
             <h1 className="text-lg font-semibold">{selectedconversation?.name || "Unknown"}</h1>
             <p className="text-sm text-green-400">
               {onlineUsers.includes(selectedconversation._id) ? "Online" : "Offline"}
+              console.log(onlineUsers);
+              console.log(selectedconversation._id);
             </p>
           </div>
         </div>

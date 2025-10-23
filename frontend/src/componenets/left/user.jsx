@@ -8,7 +8,7 @@ function User() {
   console.log("alluser:", alluser);
 
   const handleUpload = () => {
-    // Add your upload logic here (e.g., open file dialog or navigate to upload page)
+    
     alert('Upload button clicked!');
   };
 

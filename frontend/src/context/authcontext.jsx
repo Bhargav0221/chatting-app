@@ -18,17 +18,17 @@ const AuthProvider = ({ children }) => {
        }
           const response= await(axios.get(`${import.meta.env.VITE_API_URL}/user/protected`,{
             headers: {
-              Authorization: `Bearer ${token}`, // Correctly pass token in the Authorization header
+              Authorization: `Bearer ${token}`, 
             },
     
           }));
-      // Check if initialUserState is null or undefined
+     
       if (response.data.message=="token is valid") {
         if(initialUserState)
                   {
         const parsedUser = JSON.parse(initialUserState);
 
-        console.log("User from localStorage:", parsedUser); // Log user data to verify it's correct
+        console.log("User from localStorage:", parsedUser);
         setuser(parsedUser);
         console.log(response.data.message);
       } 

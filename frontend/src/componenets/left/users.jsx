@@ -1,10 +1,10 @@
   import React from 'react';
   import useConversation from '../../statemanage/userconversation';
-
+  import { usecontext } from '../../context/socketcontext';
   function Users({ user }) {
     const { selectedconversation, setselectedconversation } = useConversation();
-
-  // Prevents rendering if user or name is missing
+    
+     
 
     const isselected = selectedconversation?._id === user._id;
    
