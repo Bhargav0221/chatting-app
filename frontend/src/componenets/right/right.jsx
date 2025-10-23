@@ -9,7 +9,7 @@ function Right() {
   const { selectedconversation } = useConversation();
   const { onlineUsers } = usecontext();
 
-  
+ 
   if (!selectedconversation) {
     return (
       <div className="w-full md:w-[70%] flex items-center justify-center h-screen bg-[#111b21] text-white">
@@ -17,6 +17,8 @@ function Right() {
       </div>
     );
   }
+   console.log("selectedconversation._id:", selectedconversation._id);
+  console.log("onlineUsers:", onlineUsers);
 
   return (
     <div className="w-full md:w-[70%] h-screen flex flex-col text-white bg-[#111b21]">
