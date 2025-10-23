@@ -7,21 +7,31 @@ import { toast } from 'react-toastify';
 function login() {
     
     const navigate=useNavigate();
+     const [user, setuser] = useauth();
     const [formdata,setformdata]=useState({
         email:'',
         password:'',
     })
 
-    const handlechange=(e)=>{
+    const handlechange= (e)=>{
         setformdata({...formdata,[e.target.name]:e.target.value});
     }
-    const handlesubmit=(e)=>{
+    const handlesubmit=async (e)=>{
         try{
         e.preventDefault();
-       localStorage.setItem("pendingEmail",formdata.email);
-        localStorage.setItem("formdata", JSON.stringify(formdata));
 
-         navigate("/otp2");
+       const response=await axios.post(`${import.meta.env.VITE_API_URL}/user/login`,{
+        email:formdata.email,
+        password:formdata.password
+       })
+           localStorage.setItem("messenger", JSON.stringify(response.data.user));
+      localStorage.setItem("token", JSON.stringify(response.data.token));
+      localStorage.setItem("pendingEmail", formdata.email);
+
+          toast.success("Login Successfull");
+          setuser(response.data);
+          navigate("/");
+              
         }catch(error){
         console.log("error in login"+error);
       toast.error("error occured ")

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 function Signup() {
     const [user, setuser] = useauth();
     const navigate = useNavigate();
-    
+
     const [formdata, setformdata] = useState({
         email: "",
         username: "",
@@ -23,36 +23,40 @@ function Signup() {
         e.preventDefault();
 
         try {
-            
-           
-          
-            
-                
-            
+
+
+
+
+
+
 
             if (!(
-                formdata.email.endsWith("@gmail.com") || 
-                formdata.email.endsWith("@yahoo.com") || 
+                formdata.email.endsWith("@gmail.com") ||
+                formdata.email.endsWith("@yahoo.com") ||
                 formdata.email.endsWith("@chitkara.edu.in")
             )) {
-                
-                    toast.error("Enter a valid email");
-                
+
+                toast.error("Enter a valid email");
+
                 return;
             }
-            localStorage.setItem("pendingEmail", formdata.email);
-            console.log("form is",formdata);
-            
-                       localStorage.setItem("formdata",JSON.stringify(formdata))
-                       console.log("Stored:", localStorage.getItem("formdata"));
-                       setTimeout(() => {
-                        toast.success("redirecting to otp please wait");
-                        navigate("/otp");
+            await axios.post(`${import.meta.env.VITE_API_URL}/otp/verify-otp`, { email, otp });
 
-                       }, 1000);
-          
-        
-           
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/signup`, {
+                email: formdata.email,
+                name: formdata.username,
+                password: formdata.password,
+                confirmpassword: formdata.confirmpassword,
+            });
+            localStorage.setItem("messenger", JSON.stringify(response.data.user));
+            localStorage.setItem("token", JSON.stringify(response.data.token));
+            localStorage.removeItem("otpstatus");
+            setuser(response.data);
+            toast.success("Signup successful");
+            navigate("/");
+
+
+
 
         } catch (error) {
             console.error("Error in signup:", error.response?.data?.error || error);
@@ -74,22 +78,22 @@ function Signup() {
         <div className="h-screen w-full flex items-center justify-center bg-gray-100">
             <form className="bg-white shadow-lg p-6 rounded-lg w-96" onSubmit={handlesubmit}>
                 <h1 className="text-2xl font-semibold text-center mb-4">Welcome Back!</h1>
-                
+
                 <div className="space-y-4">
                     <label className="flex items-center border rounded-md p-2 bg-gray-50">
                         <input type="email" name="email" value={formdata.email} onChange={handlechange} className="ml-2 w-full bg-transparent outline-none" placeholder="Email" required />
                     </label>
 
                     <label className="flex items-center border rounded-md p-2 bg-gray-50">
-                        <input type="text" name="username"  className="ml-2 w-full bg-transparent outline-none" placeholder="Username" value={formdata.username} onChange={handlechange} required />
+                        <input type="text" name="username" className="ml-2 w-full bg-transparent outline-none" placeholder="Username" value={formdata.username} onChange={handlechange} required />
                     </label>
 
                     <label className="flex items-center border rounded-md p-2 bg-gray-50">
-                        <input type="password" name="password"  className="ml-2 w-full bg-transparent outline-none" placeholder="Password" value={formdata.password} onChange={handlechange} required />
+                        <input type="password" name="password" className="ml-2 w-full bg-transparent outline-none" placeholder="Password" value={formdata.password} onChange={handlechange} required />
                     </label>
 
                     <label className="flex items-center border rounded-md p-2 bg-gray-50">
-                        <input type="password" name="confirmpassword"  className="ml-2 w-full bg-transparent outline-none" placeholder="Confirm Password" value={formdata.confirmpassword} onChange={handlechange} required />
+                        <input type="password" name="confirmpassword" className="ml-2 w-full bg-transparent outline-none" placeholder="Confirm Password" value={formdata.confirmpassword} onChange={handlechange} required />
                     </label>
                 </div>
 

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function OtpVerification2() {
   const email = localStorage.getItem("pendingEmail");
   const navigate = useNavigate();
-  const [user, setuser] = useauth();
+ 
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [message, setMessage] = useState('');
@@ -37,9 +37,7 @@ function OtpVerification2() {
         password: formdata.password
       });
 
-      localStorage.setItem("messenger", JSON.stringify(response.data.user));
-      localStorage.setItem("token", JSON.stringify(response.data.token));
-      localStorage.setItem("pendingEmail", formdata.email);
+   
       setuser(response.data);
       console.log('User is logged in', response.data);
 

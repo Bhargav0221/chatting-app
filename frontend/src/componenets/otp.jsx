@@ -34,14 +34,7 @@ const OTPVerification = () => {
   const verifyOtp = async () => {
     try {
       console.log("Sending:", { email, otp });
-      await axios.post(`${import.meta.env.VITE_API_URL}/otp/verify-otp`, { email, otp });
-      setMessage("OTP Verified Successfully!");
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/user/signup`, {
-        email: formData.email,
-        name: formData.username,
-        password: formData.password,
-        confirmpassword: formData.confirmpassword,
-    });
+      
 
     if (response.data) {
         
@@ -49,11 +42,7 @@ const OTPVerification = () => {
        
 
         // Store user data in localStorage
-        localStorage.setItem("messenger", JSON.stringify(response.data.user));
-        localStorage.setItem("token", JSON.stringify(response.data.token));
-        localStorage.removeItem("otpstatus");
-        toast.success("Signup successful");
-        setuser(response.data); // Update auth context
+       // Update auth context
 
         console.log("User is created:", response.data.user);
         console.log("Token:", response.data.token);
